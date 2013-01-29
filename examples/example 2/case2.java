@@ -1,6 +1,6 @@
 import JGAL.*;
 
-class caso2_A{
+class case2{
 
 	public static void main(String[] args)throws Exception{
 		GAL_GeneConfig[] geneConfig= new GAL_GeneConfig[10];
