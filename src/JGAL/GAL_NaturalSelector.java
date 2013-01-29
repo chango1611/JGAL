@@ -19,7 +19,7 @@ public abstract class GAL_NaturalSelector{
 	/**Selects the new population to be used in the next generation.
 	*@param origin The population thats going to be used for the selection.
 	*@return A new population created from the origin population.
-	*@throws NotValidOperation If an operation can't be done with the given parameters.
+	*@throws NotValidOperationException If an operation can't be done with the given parameters.
 	*/
-	public abstract GAL_Population selectNewPopulation(GAL_Population origin, GAL_ChromosomeConfig config)throws NotValidOperation;
+	public abstract GAL_Population selectNewPopulation(GAL_Population origin, GAL_ChromosomeConfig config)throws NotValidOperationException;
 }

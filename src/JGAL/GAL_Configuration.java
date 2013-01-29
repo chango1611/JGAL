@@ -59,9 +59,9 @@ public class GAL_Configuration{
 	/**Select a new population generated with the natural selector.
 	*@param origin The population thats going to be used for the selection.
 	*@return A new population created from the origin population.
-	*@throws NotValidOperation If an operation can't be done with the given parameters.
+	*@throws NotValidOperationException If an operation can't be done with the given parameters.
 	*/
-	public GAL_Population selectNewPopulation(GAL_Population origin)throws NotValidOperation{
+	public GAL_Population selectNewPopulation(GAL_Population origin)throws NotValidOperationException{
 		return selector.selectNewPopulation(origin,chromosomeConfig);
 	}
 	
@@ -69,7 +69,7 @@ public class GAL_Configuration{
 	*@param origin The GAL_Population thats going to be modified by all operators.
 	*@return A new GAL_Population wich has been modified by all the genetic operators.
 	*/
-	public GAL_Population operatePopulation(GAL_Population origin)throws NotValidOperation{
+	public GAL_Population operatePopulation(GAL_Population origin)throws NotValidOperationException{
 		GAL_Population ret= origin.clone();
 		for(GAL_GeneticOperator op: operators)
 			ret= op.applyOperator(ret,chromosomeConfig);

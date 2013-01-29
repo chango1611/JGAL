@@ -13,24 +13,24 @@ public class GAL_MultiPointCrossover extends GAL_Crossover{
 	*If the probability is out of the range [0,1], the prob will take the closest value in the range. As Example. The probability 1.5 is equal to probability 1 and the probability -1 is equal to probability 0.
 	*@param prob Probability of ocurrence for the Multi-Point Crossover. 
 	*@param nPoints Number of crossover points. If this value is 1, then it will act similar to a Classic Crossover Operator.
-	*@throws NotValidOperation If the number of crossover points is not a pair or less than 1.
+	*@throws NotValidOperationException If the number of crossover points is not a pair or less than 1.
 	*/
-	public GAL_MultiPointCrossover(double prob, int nPoints)throws NotValidOperation{
+	public GAL_MultiPointCrossover(double prob, int nPoints)throws NotValidOperationException{
 		super(prob);
 		this.nPoints= nPoints;
 		if(nPoints%2!= 0)
-			throw new NotValidOperation("The number of points must be pair for a Multi-Point Crossover");
+			throw new NotValidOperationException("The number of points must be pair for a Multi-Point Crossover");
 		if(nPoints < 1)
-			throw new NotValidOperation("The number of points must be greater than 0 for a Multi-Point Crossover");
+			throw new NotValidOperationException("The number of points must be greater than 0 for a Multi-Point Crossover");
 	}
 	
 	/**Applies the multi-point crossover for a Population given as the first parameter under the restrictions given by the chromosome configuration.
 	*@param fathers Population thats going to be modified by the operator.
 	*@param config The configuration for the chromosomes of the current and next generation.
 	*@return A new population created after applying the Multi-Point crossover.
-	*@throws NotValidOperation If an operation can't be done with the given parameters.
+	*@throws NotValidOperationException If an operation can't be done with the given parameters.
 	*/
-	public GAL_Population applyOperator(GAL_Population fathers, GAL_ChromosomeConfig config)throws NotValidOperation{
+	public GAL_Population applyOperator(GAL_Population fathers, GAL_ChromosomeConfig config)throws NotValidOperationException{
 		GAL_Chromosome[][] chrom1= distributeChromosomes(fathers.getChromosomes(),prob), //Distribuye segun la prob[0] en fathers y sobrevivientes
 		chrom2;
 		correctSizeFromFirstGroup(chrom1,2); //Si el primer grupo no es agrupable, modifica los grupos
@@ -41,9 +41,9 @@ public class GAL_MultiPointCrossover extends GAL_Crossover{
 		try{
 			return new GAL_Population(GAL_Util.concatArrays(chrom1,new GAL_Chromosome[0]),config); //Concatena sobrevivientes con hijos
 		}catch(NotValidChromosomeException e){
-			throw new NotValidOperation("Not Valid Chromosome Exception Catched");
+			throw new NotValidOperationException("Not Valid Chromosome Exception Catched");
 		}catch(NotValidPopulationException e){
-			throw new NotValidOperation("Not Valid Population Exception Catched");
+			throw new NotValidOperationException("Not Valid Population Exception Catched");
 		}
 	}
 	
@@ -52,21 +52,21 @@ public class GAL_MultiPointCrossover extends GAL_Crossover{
 	*@param pos The positions where the crossover is going to be applied.
 	*@param config The chromosome configuration.
 	*@return The offsprings for the two fathers.
-	*@throws NotValidOperation If an NotValidGeneException or ClassCastException gets catched; Or if the number of crossover points is bigger than the size.
+	*@throws NotValidOperationException If an NotValidGeneException or ClassCastException gets catched; Or if the number of crossover points is bigger than the size.
 	*/
-	private GAL_Chromosome[] crossover(GAL_Chromosome[] fathers, int[] pos, GAL_ChromosomeConfig config)throws NotValidOperation{
+	private GAL_Chromosome[] crossover(GAL_Chromosome[] fathers, int[] pos, GAL_ChromosomeConfig config)throws NotValidOperationException{
 		GAL_Chromosome[] offsprings= {fathers[0].clone(),fathers[1].clone()};
 		if(nPoints > fathers[0].size())
-			throw new NotValidOperation("The number of points must be less than the size of the chromosome for a Multi-Point Crossover");
+			throw new NotValidOperationException("The number of points must be less than the size of the chromosome for a Multi-Point Crossover");
 		try{
 			for(int i=0;i<pos.length;i+=2){
 				config.modifyChromosome(offsprings[0],fathers[1],pos[i],pos[i+1]);
 				config.modifyChromosome(offsprings[1],fathers[0],pos[i],pos[i+1]);
 			}
 		}catch(NotValidGeneException e){
-			throw new NotValidOperation("Not Valid Gene Exception catched for a Multi-Point Crossover");
+			throw new NotValidOperationException("Not Valid Gene Exception catched for a Multi-Point Crossover");
 		}catch(ClassCastException e){
-			throw new NotValidOperation("Class Cast Exception catched for a Multi-Point Crossover");
+			throw new NotValidOperationException("Class Cast Exception catched for a Multi-Point Crossover");
 		}
 		return offsprings;
 	}

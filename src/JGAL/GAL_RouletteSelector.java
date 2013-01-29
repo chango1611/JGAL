@@ -9,9 +9,9 @@ public class GAL_RouletteSelector extends GAL_NaturalSelector{
 	/**Selects the new population to be used in the next generation by using the roulette selection.
 	*@param origin The population thats going to be used for the selection.
 	*@return A new population created from the origin population.
-	*@throws NotValidOperation If an operation can't be done with the given parameters.
+	*@throws NotValidOperationException If an operation can't be done with the given parameters.
 	*/
-	public GAL_Population selectNewPopulation(GAL_Population origin, GAL_ChromosomeConfig config)throws NotValidOperation{
+	public GAL_Population selectNewPopulation(GAL_Population origin, GAL_ChromosomeConfig config)throws NotValidOperationException{
 		int size= origin.size(), i, j;
 		double[] roullete= new double[size];
 		double sum= 0.0, aux;
@@ -39,9 +39,9 @@ public class GAL_RouletteSelector extends GAL_NaturalSelector{
 		try{
 			return new GAL_Population(offsprings,config);
 		}catch(NotValidChromosomeException e){
-			throw new NotValidOperation("Not Valid Chromosome Exception Catched");
+			throw new NotValidOperationException("Not Valid Chromosome Exception Catched");
 		}catch(NotValidPopulationException e){
-			throw new NotValidOperation("Not Valid Population Exception Catched");
+			throw new NotValidOperationException("Not Valid Population Exception Catched");
 		}
 	}
 	

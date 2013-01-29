@@ -35,7 +35,7 @@ public abstract class GAL_GeneticOperator{
 	*@param fathers Population thats going to be modified by the operator.
 	*@param config The configuration for the chromosomes of the current and next generation.
 	*@return A new population created after applying the operator.
-	*@throws NotValidOperation If an operation can't be done with the given parameters.
+	*@throws NotValidOperationException If an operation can't be done with the given parameters.
 	*/
-	public abstract GAL_Population applyOperator(GAL_Population fathers, GAL_ChromosomeConfig config) throws NotValidOperation;
+	public abstract GAL_Population applyOperator(GAL_Population fathers, GAL_ChromosomeConfig config) throws NotValidOperationException;
 }

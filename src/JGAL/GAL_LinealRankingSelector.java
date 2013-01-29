@@ -19,12 +19,12 @@ public class GAL_LinealRankingSelector extends GAL_RankingSelector{
 	/**Selects the new population to be used in the next generation by using the Lineal Ranking selection.
 	*@param origin The population thats going to be used for the selection.
 	*@return A new population created from the origin population.
-	*@throws NotValidOperation If an operation can't be done with the given parameters; or if q is not in the range [1/population_size,2/population_size].
+	*@throws NotValidOperationException If an operation can't be done with the given parameters; or if q is not in the range [1/population_size,2/population_size].
 	*/
-	public GAL_Population selectNewPopulation(GAL_Population origin, GAL_ChromosomeConfig config)throws NotValidOperation{
+	public GAL_Population selectNewPopulation(GAL_Population origin, GAL_ChromosomeConfig config)throws NotValidOperationException{
 		int size= origin.size();
 		if(q<1.0/size || q>2.0/size)
-			throw new NotValidOperation("q is not in the range [1/population_size,2/population_size]");
+			throw new NotValidOperationException("q is not in the range [1/population_size,2/population_size]");
 		GAL_Chromosome[] ranked= origin.clone().getChromosomes();
 		sortByRank(ranked);
 		
@@ -37,9 +37,9 @@ public class GAL_LinealRankingSelector extends GAL_RankingSelector{
 		try{
 			rankedPopulation= new GAL_Population(ranked,config);
 		}catch(NotValidChromosomeException e){
-			throw new NotValidOperation("Not Valid Chromosome Exception Catched");
+			throw new NotValidOperationException("Not Valid Chromosome Exception Catched");
 		}catch(NotValidPopulationException e){
-			throw new NotValidOperation("Not Valid Population Exception Catched");
+			throw new NotValidOperationException("Not Valid Population Exception Catched");
 		}
 		return rs.selectNewPopulation(rankedPopulation,config);
 	}

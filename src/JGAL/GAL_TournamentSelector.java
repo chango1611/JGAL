@@ -8,20 +8,20 @@ public class GAL_TournamentSelector extends GAL_NaturalSelector{
 	
 	/**Initialize a new GAL_TournamentSelector.
 	*@param tournamentSize The size for each tournament.
-	*@throws NotValidOperation If the tournament size is not a possitive number.
+	*@throws NotValidOperationException If the tournament size is not a possitive number.
 	*/
-	public GAL_TournamentSelector(int tournamentSize)throws NotValidOperation{
+	public GAL_TournamentSelector(int tournamentSize)throws NotValidOperationException{
 		this.tournamentSize = tournamentSize;
 		if(tournamentSize<1)
-			throw new NotValidOperation("The tournament size must be a possitive number for a Tournament Selector");
+			throw new NotValidOperationException("The tournament size must be a possitive number for a Tournament Selector");
 	}
 
 	/**Selects the new population to be used in the next generation by using the tournament selection.
 	*@param origin The population thats going to be used for the selection.
 	*@return A new population created from the origin population.
-	*@throws NotValidOperation If an operation can't be done with the given parameters.
+	*@throws NotValidOperationException If an operation can't be done with the given parameters.
 	*/
-	public GAL_Population selectNewPopulation(GAL_Population origin, GAL_ChromosomeConfig config)throws NotValidOperation{
+	public GAL_Population selectNewPopulation(GAL_Population origin, GAL_ChromosomeConfig config)throws NotValidOperationException{
 		int size= origin.size(), i, j;
 		GAL_Chromosome[] 	competitors= new GAL_Chromosome[tournamentSize],
 							offsprings= new GAL_Chromosome[size];
@@ -37,9 +37,9 @@ public class GAL_TournamentSelector extends GAL_NaturalSelector{
 		try{
 			return new GAL_Population(offsprings,config);
 		}catch(NotValidChromosomeException e){
-			throw new NotValidOperation("Not Valid Chromosome Exception Catched");
+			throw new NotValidOperationException("Not Valid Chromosome Exception Catched");
 		}catch(NotValidPopulationException e){
-			throw new NotValidOperation("Not Valid Population Exception Catched");
+			throw new NotValidOperationException("Not Valid Population Exception Catched");
 		}
 	}
 	

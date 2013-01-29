@@ -35,7 +35,7 @@ public abstract class GAL_NumericalGeneConfig<T extends Number & Comparable<T>> 
 	*/
 	public void setValueTo(GAL_Gene gene, T val)throws NotValidGeneException{
 		gene.setTrait(val);
-		if(val.compareTo(min)<0 && val.compareTo(max)>0)
+		if(val.compareTo(min)<0 || val.compareTo(max)>0)
 			throw new NotValidGeneException("The trait " + val + " is not in the range ["+min+","+max+"] for this Numerical Gene");
 	}
 	

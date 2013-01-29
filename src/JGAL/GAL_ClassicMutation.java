@@ -16,9 +16,9 @@ public class GAL_ClassicMutation extends GAL_GeneticOperator{
 	*@param fathers Population thats going to be modified by the operator.
 	*@param config The configuration for the chromosomes of the current and next generation.
 	*@return A new population created after applying the mutation.
-	*@throws NotValidOperation If an operation can't be done with the given parameters.
+	*@throws NotValidOperationException If an operation can't be done with the given parameters.
 	*/
-	public GAL_Population applyOperator(GAL_Population fathers, GAL_ChromosomeConfig config)throws NotValidOperation{
+	public GAL_Population applyOperator(GAL_Population fathers, GAL_ChromosomeConfig config)throws NotValidOperationException{
 		int i, size;
 		GAL_Population offsprings= fathers.clone();
 		for(GAL_Chromosome chrom: offsprings.getChromosomes()){

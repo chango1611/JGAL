@@ -21,9 +21,9 @@ public class GAL_SegmentCrossover extends GAL_Crossover{
 	*@param fathers Population thats going to be modified by the operator.
 	*@param config The configuration for the chromosomes of the current and next generation.
 	*@return A new population created after applying the Segment crossover.
-	*@throws NotValidOperation If an operation can't be done with the given parameters.
+	*@throws NotValidOperationException If an operation can't be done with the given parameters.
 	*/
-	public GAL_Population applyOperator(GAL_Population fathers, GAL_ChromosomeConfig config)throws NotValidOperation{
+	public GAL_Population applyOperator(GAL_Population fathers, GAL_ChromosomeConfig config)throws NotValidOperationException{
 		GAL_Chromosome[][] chrom1= distributeChromosomes(fathers.getChromosomes(),prob), //Distribuye segun la prob[0] en fathers y sobrevivientes
 		chrom2;
 		correctSizeFromFirstGroup(chrom1,2); //Si el primer grupo no es agrupable, modifica los grupos
@@ -49,9 +49,9 @@ public class GAL_SegmentCrossover extends GAL_Crossover{
 		try{
 			return new GAL_Population(GAL_Util.concatArrays(chrom1,new GAL_Chromosome[0]),config); //Concatena sobrevivientes con hijos
 		}catch(NotValidChromosomeException e){
-			throw new NotValidOperation("Not Valid Chromosome Exception Catched");
+			throw new NotValidOperationException("Not Valid Chromosome Exception Catched");
 		}catch(NotValidPopulationException e){
-			throw new NotValidOperation("Not Valid Population Exception Catched");
+			throw new NotValidOperationException("Not Valid Population Exception Catched");
 		}
 	}
 	
@@ -61,17 +61,17 @@ public class GAL_SegmentCrossover extends GAL_Crossover{
 	*@param max The first position where the crossover is not going to be applied after min.
 	*@param config The chromosome configuration.
 	*@return The offsprings for the two fathers.
-	*@throws NotValidOperation If an NotValidGeneException or ClassCastException gets catched.
+	*@throws NotValidOperationException If an NotValidGeneException or ClassCastException gets catched.
 	*/
-	private GAL_Chromosome[] crossover(GAL_Chromosome[] fathers, int min, int max, GAL_ChromosomeConfig config)throws NotValidOperation{
+	private GAL_Chromosome[] crossover(GAL_Chromosome[] fathers, int min, int max, GAL_ChromosomeConfig config)throws NotValidOperationException{
 		GAL_Chromosome[] offsprings= {fathers[0].clone(),fathers[1].clone()};
 		try{
 			config.modifyChromosome(offsprings[0],fathers[1],min,max);
 			config.modifyChromosome(offsprings[1],fathers[0],min,max);
 		}catch(NotValidGeneException e){
-			throw new NotValidOperation("Not Valid Gene Exception catched for a Segment Crossover");
+			throw new NotValidOperationException("Not Valid Gene Exception catched for a Segment Crossover");
 		}catch(ClassCastException e){
-			throw new NotValidOperation("Class Cast Exception catched for a Segment Crossover");
+			throw new NotValidOperationException("Class Cast Exception catched for a Segment Crossover");
 		}
 		return offsprings;
 	}

@@ -51,9 +51,9 @@ public class GAL_Handler{
 	/**Runs the Genetic Algorithm
 	*@throws NotValidChromosomeException If the chromosomes can't be created with the actual configuration.
 	*@throws NotValidPopulationException If the population can't be created with the actual configuration.
-	*@throws NotValidOperation If an operation can't be done with the actual configuration.
+	*@throws NotValidOperationException If an operation can't be done with the actual configuration.
 	*/
-	public void runGAL()throws NotValidChromosomeException, NotValidPopulationException, NotValidOperation{
+	public void runGAL()throws NotValidChromosomeException, NotValidPopulationException, NotValidOperationException{
 		GAL_Population population= configuration.createNewPopulation(populationSize);
 		lastGeneration= 0;
 		
@@ -103,7 +103,7 @@ public class GAL_Handler{
 	*/
 	public GAL_Chromosome getBestFromAll(){
 		GAL_Chromosome winner= bestChromosomeFromGeneration[0];
-		for(int i=1;i<lastGeneration;i++){
+		for(int i=1;i<maxGenerations && i<=lastGeneration;i++){
 			if(winner.compareTo(bestChromosomeFromGeneration[i]) < 0)
 				winner= bestChromosomeFromGeneration[i];
 		}
