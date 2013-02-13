@@ -56,6 +56,16 @@ public class GAL_Configuration{
 		return new GAL_Population(size,chromosomeConfig);
 	}
 	
+	/**Creates a new population under the configuration given by chromosomeConfig.
+	*@param chromosomes The chromosomes that will be used for the new population.
+	*@return The new GAL_Population.
+	*@throws NotValidChromosomeException If the array of chromosomes does not match with the configuration.
+	*@throws NotValidPopulationException If the length of the array of chromosomes is less than 1. 
+	*/
+	public GAL_Population createNewPopulation(GAL_Chromosome[] chromosomes)throws NotValidChromosomeException,NotValidPopulationException{
+		return new GAL_Population(chromosomes,chromosomeConfig);
+	}
+	
 	/**Select a new population generated with the natural selector.
 	*@param origin The population thats going to be used for the selection.
 	*@return A new population created from the origin population.
@@ -74,5 +84,33 @@ public class GAL_Configuration{
 		for(GAL_GeneticOperator op: operators)
 			ret= op.applyOperator(ret,chromosomeConfig);
 		return ret;
+	}
+	
+	/**Applies the genetic operator in the position given by the int parameter.
+	*@param origin The GAL_Population thats going to be modified by the operator.
+	*@param pos The position of the genetic operator.
+	*@return A new GAL_Population wich has been modified by the genetic operator.
+	*/
+	public GAL_Population operatePopulation(GAL_Population origin, int pos)throws NotValidOperationException{
+		GAL_Population ret= origin.clone();
+		return operators[pos].applyOperator(ret,chromosomeConfig);
+	}
+	
+	/**Changes the probability of the genetic operator at the position indicated by the first parameter.
+	*@param pos The position of the genetic operator.
+	*@param prob The new probability for the genetic operator.
+	*@return The old robability for the genetic operator.
+	*/
+	public double changeProbTo(int pos, double prob){
+		double ret= operators[pos].getProb();
+		operators[pos].setProb(prob);
+		return ret;
+	}
+	
+	/**Returns the size of the genetic operators array.
+	*@return The size of the genetic operators array.
+	*/
+	public int operatorsArraySize(){
+		return operators.length;
 	}
 }

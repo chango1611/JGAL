@@ -24,12 +24,19 @@ public abstract class GAL_GeneticOperator{
 		this.prob= prob;
 	}
 	
-	//**Sets a new prob field value.
-	//*@param prob The probability to be set.
-	//*/
-	//public void setProb(double prob){
-	//	this.prob= prob;
-	//}
+	/**Sets a new prob field value.
+	*@param prob The probability to be set.
+	*/
+	public void setProb(double prob){
+		this.prob= prob;
+	}
+	
+	/**Gets the prob field value.
+	*@return The prob field value.
+	*/
+	public double getProb(){
+		return prob;
+	}
 	
 	/**Applies the operator for a Population given as the first parameter under the restrictions given by the chromosome configuration.
 	*@param fathers Population thats going to be modified by the operator.

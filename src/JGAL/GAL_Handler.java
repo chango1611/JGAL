@@ -2,34 +2,37 @@ package JGAL;
 
 import java.util.LinkedList;
 
-/**The GAL_Handler contains the runGAL method, wich execute the Genetic Algorithm with the given configuration.*/
-public class GAL_Handler{
+/**The GAL_Handler is an abstract class for the handler of the Genetic Algorithm.
+*<p>
+*Subclasses of GAL_Handler must provide methods for runGAL, wich execute the Genetic Algorithm with the given configuration.
+*/
+public abstract class GAL_Handler{
 
 	//Datos de salida del programa
 	/**Stores the best chromosome for each generation.*/
-	private GAL_Chromosome[] bestChromosomeFromGeneration;
+	protected GAL_Chromosome[] bestChromosomeFromGeneration;
 	
 	/**Stores the average fitness for each generation.*/
-	private double[] averageFitnessFromGeneration;
+	protected double[] averageFitnessFromGeneration;
 	
 	/**The last generation that has been executed*/
-	private int lastGeneration;
+	protected int lastGeneration;
 	
 	//Datos de configuracion
 	/**The configuration to be used by the Genetic Algorithm.*/
-	private GAL_Configuration configuration;
+	protected GAL_Configuration configuration;
 	
 	/**The maximum number of Generations allowed.*/
-	private int maxGenerations;
+	protected int maxGenerations;
 	
 	/**The size of the population.*/
-	private int populationSize;
+	protected int populationSize;
 		
 	/**The size for the window of populations to be remembered.*/
-	private int windowSize;
+	protected int windowSize;
 	
 	/**Stores the window of populations to be remembered.*/
-	private LinkedList<GAL_Population> window;
+	protected LinkedList<GAL_Population> window;
 	
 	/**Initializes a new GAL_Handler with a configuration and a maximum number of generations.
 	*@param configuration The configuration to be used by the Genetic Algorithm.
@@ -48,45 +51,10 @@ public class GAL_Handler{
 		window= new LinkedList<GAL_Population>();
 	}
 	
-	/**Runs the Genetic Algorithm
-	*@throws NotValidChromosomeException If the chromosomes can't be created with the actual configuration.
-	*@throws NotValidPopulationException If the population can't be created with the actual configuration.
-	*@throws NotValidOperationException If an operation can't be done with the actual configuration.
-	*/
-	public void runGAL()throws NotValidChromosomeException, NotValidPopulationException, NotValidOperationException{
-		GAL_Population population= configuration.createNewPopulation(populationSize);
-		lastGeneration= 0;
-		
-		//Guarda la informacion de la 1ra generacion
-		configuration.computeAllFitness(population);
-		saveData(population);
-		
-		while(!configuration.verifyTerminationCondition(window.toArray(new GAL_Population[0]))){
-			
-			//Incremento en 1 la generacion y verifico si ya me pase del maximo de genraciones
-			if(++lastGeneration==maxGenerations)
-				break;
-				
-			//Selecciono la nueva poblacion i+1
-			population= configuration.selectNewPopulation(population);
-			
-			//Aplico operadores geneticos
-			population= configuration.operatePopulation(population);
-			
-			//Calcula la aptitud de los cromosomas para la generacion lastGeneration
-			configuration.computeAllFitness(population);
-			
-			//Guarda la informacion de la nueva generacion
-			configuration.computeAllFitness(population);
-			saveData(population);
-		}
-		
-	}
-	
 	/**Saves the information pertinent to the problem
 	*@param population The population wich information is getting saved
 	*/
-	private void saveData(GAL_Population population){	
+	protected void saveData(GAL_Population population){	
 		//Guardo informacion de la generacion lastGeneration
 		bestChromosomeFromGeneration[lastGeneration]= population.getBestChromosome();
 		averageFitnessFromGeneration[lastGeneration]= population.getTotalFitness()/population.size();
@@ -171,6 +139,11 @@ public class GAL_Handler{
 	public int getLastGenerationNumber(){
 		return lastGeneration;
 	}
+	
+	/**Runs the Genetic Algorithm
+	*@throws NotValidChromosomeException If the chromosomes can't be created with the actual configuration.
+	*@throws NotValidPopulationException If the population can't be created with the actual configuration.
+	*@throws NotValidOperationException If an operation can't be done with the actual configuration.
+	*/
+	public abstract void runGAL()throws NotValidChromosomeException, NotValidPopulationException, NotValidOperationException;
 }
-
-//Hay que crear una clase abstracta para condicion de terminacion
