@@ -8,8 +8,16 @@ public class GAL_CharacterGeneConfig extends GAL_GeneConfig<Character>{
 	/**Maximum value that the trait can get*/
 	protected short max;
 	
-	/**Initializes a GAL_CharacterGeneConfig with min field equal 0 and max field equal Integer.MAX_VALUE*/
-	public GAL_CharacterGeneConfig()throws NotValidGeneException{
+	/**Initializes a GAL_CharacterGeneConfig with min field equal 'a' and max field equal 'z'.*/
+	public GAL_CharacterGeneConfig(){
+		min= (short)'a'; max= (short)'z';
+	}
+	
+	/**Initializes a GAL_CharacterGeneConfig with min field equal 0 and max field equal Integer.MAX_VALUE
+	*@param name The name of the gene.
+	*/
+	public GAL_CharacterGeneConfig(String name){
+		super(name);
 		min= (short)Character.MIN_VALUE; max= (short)Character.MAX_VALUE;
 	}
 	
@@ -19,6 +27,20 @@ public class GAL_CharacterGeneConfig extends GAL_GeneConfig<Character>{
 	* @throws NotValidGeneException The range only accepts one value; or if min > max.
 	*/
 	public GAL_CharacterGeneConfig(Character min, Character max) throws NotValidGeneException{
+		this.min= (short) (min==null?Character.MIN_VALUE:min);
+		this.max= (short) (max==null?Character.MAX_VALUE:max);
+		if(max-min==(short)1)
+			throw new NotValidGeneException("The range [min,max) only accepts one possible value for an Character Gene");
+	}
+	
+	/**Constructs a new GAL_CharacterGeneConfig object with minimum and maximum possible value for the trait of a GAL_Gene.
+	* @param name The name of the gene.
+	* @param min The minimum value the trait can get. If it's null it will set min as 0.
+	* @param max The maximum value the trait can get. If it's null it will set max as Character.MAX_VALUE.
+	* @throws NotValidGeneException The range only accepts one value; or if min > max.
+	*/
+	public GAL_CharacterGeneConfig(String name, Character min, Character max) throws NotValidGeneException{
+		super(name);
 		this.min= (short) (min==null?Character.MIN_VALUE:min);
 		this.max= (short) (max==null?Character.MAX_VALUE:max);
 		if(max-min==(short)1)

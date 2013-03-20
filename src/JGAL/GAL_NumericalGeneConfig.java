@@ -16,12 +16,35 @@ public abstract class GAL_NumericalGeneConfig<T extends Number & Comparable<T>> 
 		this.max= null;
 	}
 	
+	/**Initializes a new GAL_NumericalGeneConfig wich min and max set on null.
+	*@param name The name of the gene.
+	*/
+	public GAL_NumericalGeneConfig(String name){
+		super(name);
+		this.min= null;
+		this.max= null;
+	}
+	
 	/**Constructs a new GAL_NumericalGeneConfig object with minimum and maximum possible value for the trait of a GAL_Gene.
 	* @param min The minimum value the trait can get.
 	* @param max The maximum value the trait can get.
 	* @throws NotValidGeneException If min > max.
 	*/
 	public GAL_NumericalGeneConfig(T min, T max)throws NotValidGeneException{
+		this.min= min;
+		this.max= max;
+		if(min!=null && max!=null && max.compareTo(min)<=0)
+			throw new NotValidGeneException("min value ("+min+") > max value ("+max+") for a Numerical Gene");
+	}
+	
+	/**Constructs a new GAL_NumericalGeneConfig object with minimum and maximum possible value for the trait of a GAL_Gene.
+	* @param name The name of the gene.
+	* @param min The minimum value the trait can get.
+	* @param max The maximum value the trait can get.
+	* @throws NotValidGeneException If min > max.
+	*/
+	public GAL_NumericalGeneConfig(String name, T min, T max)throws NotValidGeneException{
+		super(name);
 		this.min= min;
 		this.max= max;
 		if(min!=null && max!=null && max.compareTo(min)<=0)

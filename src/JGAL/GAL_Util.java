@@ -8,7 +8,7 @@ import java.util.List;
 public class GAL_Util{
 
 	/**Random object wich can be used inside the others methods as distributeChromosomes.*/
-	private static Random rand= new Random();
+	protected static Random rand= new Random();
 	
 	/**Concatenate two arrays of any type and returned as an new array.
 	*<p>

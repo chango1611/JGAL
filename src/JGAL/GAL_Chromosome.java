@@ -4,9 +4,9 @@ package JGAL;
 public class GAL_Chromosome implements Comparable<GAL_Chromosome>{
 	
 	/**The genes that represents the Chromosome*/
-	private GAL_Gene[] genes;
+	protected GAL_Gene[] genes;
 	/**The fitness value for the Chromosome*/
-	private double fitness;
+	protected double fitness;
 	
 	/**Constructs a new GAL_Chromosome wich genes are passed as an argument.
 	*@param genes Array of the genes of the Chromosome.

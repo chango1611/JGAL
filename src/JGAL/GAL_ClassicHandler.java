@@ -26,12 +26,13 @@ public class GAL_ClassicHandler extends GAL_Handler{
 		configuration.computeAllFitness(population);
 		saveData(population);
 		
-		while(!configuration.verifyTerminationCondition(window.toArray(new GAL_Population[0]))){
+		//Verifico si ya me pase del maximo de generaciones
+		while(++lastGeneration<maxGenerations){
 			
-			//Incremento en 1 la generacion y verifico si ya me pase del maximo de generaciones
-			if(++lastGeneration==maxGenerations)
+			//Verifico si se cumple la condicion de terminación
+			if(configuration.verifyTerminationCondition(window.toArray(new GAL_Population[0])))
 				break;
-				
+			
 			//Selecciono la nueva poblacion i+1
 			population= configuration.selectNewPopulation(population);
 			
@@ -44,6 +45,5 @@ public class GAL_ClassicHandler extends GAL_Handler{
 			//Guarda la informacion de la nueva generacion
 			saveData(population);
 		}
-		
 	}
 }

@@ -4,7 +4,7 @@ package JGAL;
 public class GAL_Population{
 	
 	/**The chromosomes that represents the population*/
-	private GAL_Chromosome[] chromosomes;
+	protected GAL_Chromosome[] chromosomes;
 	
 	/**Constructs a new GAL_Population of size given by the first parameter and chromosomes created under the configuration of the second parameter.
 	*@param size The number of chromosomes in the population.
@@ -43,7 +43,7 @@ public class GAL_Population{
 	/**Constructs a new GAL_Population from an array of chromosomes.
 	*@param chromosomes The array of chromosomes to be inserted at the population. 
 	*/
-	private GAL_Population(GAL_Chromosome[] chromosomes){
+	protected GAL_Population(GAL_Chromosome[] chromosomes){
 		this.chromosomes= chromosomes;
 	}
 	

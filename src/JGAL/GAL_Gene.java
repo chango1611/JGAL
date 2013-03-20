@@ -4,7 +4,7 @@ package JGAL;
 public class GAL_Gene{
 	
 	/**An Object that represents the trait of the gene.*/
-	private Object trait;
+	protected Object trait;
 	
 	/**Initializes a new GAL_Gene wich trait is set on null.*/
 	public GAL_Gene(){

@@ -11,9 +11,19 @@ public abstract class GAL_GeneConfig<T>{
 	/**Random object wich can be used inside the others methods as setRandomValueTo.*/
 	protected Random rand;
 	
+	/**Optional name of the gene*/
+	protected String name;
+	
 	/**Initializes a GAL_GeneConfig with a new instance of a Random object.*/
 	public GAL_GeneConfig(){
 		rand= new Random();
+		name="";
+	}
+	
+	/**Initializes a GAL_GeneConfig with a name and a new instance of a Random object.*/
+	public GAL_GeneConfig(String name){
+		rand= new Random();
+		this.name= name;
 	}
 	
 	/**Creates and returns a new GAL_Gene by using the method setRandomValueTo.
@@ -34,6 +44,20 @@ public abstract class GAL_GeneConfig<T>{
 	@SuppressWarnings("unchecked")
 	public void setValueToFrom(GAL_Gene gene, GAL_Gene gene2) throws NotValidGeneException,ClassCastException{
 		setValueTo(gene,(T)gene2.getTrait());
+	}
+	
+	/**Gets the name of the gene.
+	*@return The name of the gene.
+	*/
+	public String getName(){
+		return name;
+	}
+	
+	/**Sets the name of the gene.
+	*@param name The name of the gene.
+	*/
+	public void setName(String name){
+		this.name= name;
 	}
 	
 	/**Assigns a random value to the trait of a GAL_Gene object.

@@ -42,7 +42,7 @@ public class GAL_ClassicCrossover extends GAL_Crossover{
 	*@return The offsprings for the two fathers.
 	*@throws NotValidOperationException If an NotValidGeneException or ClassCastException gets catched.
 	*/
-	private GAL_Chromosome[] crossover(GAL_Chromosome[] fathers, int pos, GAL_ChromosomeConfig config)throws NotValidOperationException{
+	protected GAL_Chromosome[] crossover(GAL_Chromosome[] fathers, int pos, GAL_ChromosomeConfig config)throws NotValidOperationException{
 		GAL_Chromosome[] offsprings= {fathers[0].clone(),fathers[1].clone()};
 		try{
 			config.modifyChromosome(offsprings[0],fathers[1],pos,fathers[1].size());

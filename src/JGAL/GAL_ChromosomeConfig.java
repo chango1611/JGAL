@@ -3,7 +3,7 @@ package JGAL;
 /**The GAL_ChromosomeConfig is a class for the configuration of a GAL_Chromosome*/
 public class GAL_ChromosomeConfig{
 	/**Array with the configuration of each gene of the chromosome*/
-	private GAL_GeneConfig[] configuration;
+	protected GAL_GeneConfig[] configuration;
 	
 	/**Constructs a new GAL_ChromosomeConfig objet with an array of GAL_GeneConfig.
 	*@param configuration Array of GAL_GeneConfig wich correspond with each gene configuration for the Chromosome.

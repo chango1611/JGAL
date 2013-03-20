@@ -4,7 +4,7 @@ package JGAL;
 public class GAL_NonLinealRankingSelector extends GAL_RankingSelector{
 
 	/**Auxiliar double used for the selective pressure.*/
-	private double q;
+	protected double q;
 	
 	/**Initialize a new GAL_NonLinealRankingSelector.
 	*@param q Auxiliar double used for the selective pressure.
@@ -13,7 +13,7 @@ public class GAL_NonLinealRankingSelector extends GAL_RankingSelector{
 	public GAL_NonLinealRankingSelector(double q)throws NotValidOperationException{
 		this.q= q;
 		if(q<0 || q>1)
-			throw new NotValidOperationException("q is not in the range [1/population_size,2/population_size]");
+			throw new NotValidOperationException("q is not in the range [0..1]");
 	}
 	
 	/**Selects the new population to be used in the next generation by using the Non Lineal Ranking selection.
@@ -38,5 +38,12 @@ public class GAL_NonLinealRankingSelector extends GAL_RankingSelector{
 			throw new NotValidOperationException("Not Valid Population Exception Catched");
 		}
 		return rs.selectNewPopulation(rankedPopulation,config);
+	}
+	
+	/**Gets the q value.
+	*@return The q value.
+	*/
+	public double getQ(){
+		return q;
 	}
 }

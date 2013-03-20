@@ -6,13 +6,13 @@ import java.util.Arrays;
 public class GAL_MultiPointCrossover extends GAL_Crossover{
 	
 	/**Number of crossover points.*/
-	private int nPoints;
+	protected int nPoints;
 	
 	/**Constructs a new GAL_MultiPointCrossover with a probability of ocurrence given by its first parameter and number of crossover points given by the second parameter.
 	*<p>
 	*If the probability is out of the range [0,1], the prob will take the closest value in the range. As Example. The probability 1.5 is equal to probability 1 and the probability -1 is equal to probability 0.
 	*@param prob Probability of ocurrence for the Multi-Point Crossover. 
-	*@param nPoints Number of crossover points. If this value is 1, then it will act similar to a Classic Crossover Operator.
+	*@param nPoints Number of crossover points.
 	*@throws NotValidOperationException If the number of crossover points is not a pair or less than 1.
 	*/
 	public GAL_MultiPointCrossover(double prob, int nPoints)throws NotValidOperationException{
@@ -54,7 +54,7 @@ public class GAL_MultiPointCrossover extends GAL_Crossover{
 	*@return The offsprings for the two fathers.
 	*@throws NotValidOperationException If an NotValidGeneException or ClassCastException gets catched; Or if the number of crossover points is bigger than the size.
 	*/
-	private GAL_Chromosome[] crossover(GAL_Chromosome[] fathers, int[] pos, GAL_ChromosomeConfig config)throws NotValidOperationException{
+	protected GAL_Chromosome[] crossover(GAL_Chromosome[] fathers, int[] pos, GAL_ChromosomeConfig config)throws NotValidOperationException{
 		GAL_Chromosome[] offsprings= {fathers[0].clone(),fathers[1].clone()};
 		if(nPoints > fathers[0].size())
 			throw new NotValidOperationException("The number of points must be less than the size of the chromosome for a Multi-Point Crossover");
@@ -75,7 +75,7 @@ public class GAL_MultiPointCrossover extends GAL_Crossover{
 	*@param size The actual size of a chromosome
 	*@return An array with the positions where the crossover is going to be applied.
 	*/
-	private int[] createPositions(int size){
+	protected int[] createPositions(int size){
 		Integer[] ret= new Integer[size];
 		for(int i=0;i<size; i++)
 			ret[i]= Integer.valueOf(i);
@@ -86,5 +86,12 @@ public class GAL_MultiPointCrossover extends GAL_Crossover{
 		for(int i=0;i<ret.length;i++)
 			ret2[i]= ret[i];
 		return ret2;
+	}
+	
+	/**Gets the value from the field nPoints.
+	*@return The value from the field nPoints.
+	*/
+	public int getNumberOfPoints(){
+		return nPoints;
 	}
 }

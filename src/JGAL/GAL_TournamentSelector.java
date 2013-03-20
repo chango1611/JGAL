@@ -4,7 +4,7 @@ package JGAL;
 public class GAL_TournamentSelector extends GAL_NaturalSelector{
 
 	/**The size for each tournament.*/
-	private int tournamentSize;
+	protected int tournamentSize;
 	
 	/**Initialize a new GAL_TournamentSelector.
 	*@param tournamentSize The size for each tournament.
@@ -52,4 +52,10 @@ public class GAL_TournamentSelector extends GAL_NaturalSelector{
 		return winner;
 	}
 
+	/**Gets the tournament size.
+	*@return The tournament size.
+	*/
+	public int getTournamentSize(){
+		return tournamentSize;
+	}
 }

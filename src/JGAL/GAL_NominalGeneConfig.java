@@ -4,13 +4,25 @@ package JGAL;
 public class GAL_NominalGeneConfig extends GAL_GeneConfig<String>{
 	
 	/**Array of possible values the strait can get*/
-	private String[] alleles;
+	protected String[] alleles;
 		
 	/**Constructs a new GAL_NominalGeneConfig object with an array of alleles for the trait of a GAL_Gene.
 	* @param alleles Array of possible values the strait can get
 	* @throws NotValidGeneException If the alleles array is less than 1 or null.
 	*/
 	public GAL_NominalGeneConfig(String[] alleles) throws NotValidGeneException{
+		this.alleles= alleles;
+		if(alleles==null || alleles.length<=1)
+			throw new NotValidGeneException("Amount of possible alleles must be greater than 1 for a Nominal Gene");
+	}
+	
+	/**Constructs a new GAL_NominalGeneConfig object with an array of alleles for the trait of a GAL_Gene.
+	* @param name The name of the gene.
+	* @param alleles Array of possible values the strait can get
+	* @throws NotValidGeneException If the alleles array is less than 1 or null.
+	*/
+	public GAL_NominalGeneConfig(String name, String[] alleles) throws NotValidGeneException{
+		super(name);
 		this.alleles= alleles;
 		if(alleles==null || alleles.length<=1)
 			throw new NotValidGeneException("Amount of possible alleles must be greater than 1 for a Nominal Gene");
@@ -60,6 +72,13 @@ public class GAL_NominalGeneConfig extends GAL_GeneConfig<String>{
 		return alleles[pos];
 	}
 
+	/**Gets all the alleles for this gene.
+	*@return All the alleles for this gene.
+	*/
+	public String[] getAlleles(){
+		return alleles;
+	}
+	
 	/**Returns the number of Alleles there are in the alleles array.
 	*@return The number of Alleles there are in the alleles array.
 	*/

@@ -8,9 +8,6 @@ import java.util.Arrays;
 */
 public class GAL_ShuffleMutation extends GAL_GeneticOperator{
 	
-	/**Probability of mutating a Gene.*/
-	private double prob2;
-	
 	/**Constructs a new GAL_ShuffleMutation with a probability of ocurrence given by its only parameter.
 	*<p>
 	*If the probability is out of the range [0,1], the prob will take the closest value in the range. As Example. The probability 1.5 is equal to probability 1 and the probability -1 is equal to probability 0.

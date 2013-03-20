@@ -4,7 +4,7 @@ package JGAL;
 public class GAL_ChromosomeMutation extends GAL_GeneticOperator{
 	
 	/**Probability of mutating a Gene.*/
-	private double prob2;
+	protected double prob2;
 	
 	/**Constructs a new GAL_ChromosomeMutation with a probability of ocurrence given by its only parameter.
 	*<p>
@@ -36,5 +36,12 @@ public class GAL_ChromosomeMutation extends GAL_GeneticOperator{
 			}
 		}
 		return offsprings;
+	}
+	
+	/**Gets the value from the field prob2.
+	*@return The value from the field prob2.
+	*/
+	public double getSecondProb(){
+		return prob2;
 	}
 }

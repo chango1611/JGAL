@@ -6,10 +6,10 @@ import java.util.Arrays;
 public class GAL_ModHandler extends GAL_Handler{
 	
 	/**The expected size for each genetic operator to be applied*/
-	private int[] operator_size;
+	protected int[] operator_size;
 	
 	/**The number of fathers to be selected.*/
-	private int r;
+	protected int r;
 	
 	/**Initializes a new GAL_ClassicHandler with a configuration and a maximum number of generations.
 	*@param configuration The configuration to be used by the Genetic Algorithm.
@@ -51,10 +51,11 @@ public class GAL_ModHandler extends GAL_Handler{
 		configuration.computeAllFitness(population);
 		saveData(population);
 		
-		while(!configuration.verifyTerminationCondition(window.toArray(new GAL_Population[0]))){
+		//Verifico si ya me pase del maximo de generaciones
+		while(++lastGeneration<maxGenerations){
 			
-			//Incremento en 1 la generacion y verifico si ya me pase del maximo de generaciones
-			if(++lastGeneration==maxGenerations)
+			//Verifico si se cumple la condicion de terminación
+			if(configuration.verifyTerminationCondition(window.toArray(new GAL_Population[0])))
 				break;
 			
 			//Selecciono a los padres
@@ -81,6 +82,5 @@ public class GAL_ModHandler extends GAL_Handler{
 			//Guarda la informacion de la nueva generacion
 			saveData(population);
 		}
-		
 	}
 }

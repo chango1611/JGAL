@@ -4,7 +4,7 @@ package JGAL;
 public class GAL_SegmentCrossover extends GAL_Crossover{
 	
 	/**Probability for changing the segment.*/
-	private double segmentChangeProb;
+	protected double segmentChangeProb;
 	
 	/**Constructs a new GAL_SegmentCrossover with a probability of ocurrence given by its first parameter and segment change probability given by the second parameter.
 	*<p>
@@ -63,7 +63,7 @@ public class GAL_SegmentCrossover extends GAL_Crossover{
 	*@return The offsprings for the two fathers.
 	*@throws NotValidOperationException If an NotValidGeneException or ClassCastException gets catched.
 	*/
-	private GAL_Chromosome[] crossover(GAL_Chromosome[] fathers, int min, int max, GAL_ChromosomeConfig config)throws NotValidOperationException{
+	protected GAL_Chromosome[] crossover(GAL_Chromosome[] fathers, int min, int max, GAL_ChromosomeConfig config)throws NotValidOperationException{
 		GAL_Chromosome[] offsprings= {fathers[0].clone(),fathers[1].clone()};
 		try{
 			config.modifyChromosome(offsprings[0],fathers[1],min,max);
@@ -74,5 +74,12 @@ public class GAL_SegmentCrossover extends GAL_Crossover{
 			throw new NotValidOperationException("Class Cast Exception catched for a Segment Crossover");
 		}
 		return offsprings;
+	}
+	
+	/**Gets the value from the field segmentChangeProb.
+	*@return The value from the field segmentChangeProb.
+	*/
+	public double getSegmetChangeProb(){
+		return segmentChangeProb;
 	}
 }

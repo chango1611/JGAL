@@ -4,7 +4,7 @@ package JGAL;
 public class GAL_ClassicRankingSelector extends GAL_RankingSelector{
 
 	/**Upper limit for the expected number of offspring.*/
-	private int max;
+	protected int max;
 	
 	/**Initialize a new GAL_ClassicRankingSelector.
 	*@param max upper limit for the expected number of offspring.
@@ -38,5 +38,12 @@ public class GAL_ClassicRankingSelector extends GAL_RankingSelector{
 			throw new NotValidOperationException("Not Valid Population Exception Catched");
 		}
 		return rs.selectNewPopulation(rankedPopulation,config); 
+	}
+	
+	/**Gets the max expected number of offsprings.
+	*@return The max expected number of offsprings.
+	*/
+	public int getMax(){
+		return max;
 	}
 }

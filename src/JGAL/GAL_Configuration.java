@@ -4,15 +4,15 @@ package JGAL;
 public class GAL_Configuration{
 
 	/**The configuration for the chromosomes that will be used by this program.*/
-	private GAL_ChromosomeConfig chromosomeConfig;
+	protected GAL_ChromosomeConfig chromosomeConfig;
 	/**The termination condition that will be used by this program.*/
-	private GAL_TerminationCondition condition;
+	protected GAL_TerminationCondition condition;
 	/**The fitness function that will be used by this program.*/
-	private GAL_FitnessFunction fitnessFunction;
+	protected GAL_FitnessFunction fitnessFunction;
 	/**The genetic operators that will be used by this program.*/
-	private GAL_GeneticOperator[] operators;
+	protected GAL_GeneticOperator[] operators;
 	/**The natural selector that will be useb by this program*/
-	private GAL_NaturalSelector selector;
+	protected GAL_NaturalSelector selector;
 
 	/**Constructs a new GAL_Configuration with the necessary information for running a GA.
 	*@param chromosomeConfig The configuration for the chromosomes that will be used by this program.

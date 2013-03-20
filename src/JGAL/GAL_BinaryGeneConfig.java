@@ -7,6 +7,13 @@ public class GAL_BinaryGeneConfig extends GAL_GeneConfig<Byte>{
 	public GAL_BinaryGeneConfig(){
 	}
 	
+	/**Initializes a new GAL_BinaryGeneConfig by calling super.
+	*@param name The name of the gene.
+	*/
+	public GAL_BinaryGeneConfig(String name){
+		super(name);
+	}
+	
 	/**Assigns a random value to the trait of a binary GAL_Gene object with an equal probability to get 0 or 1 as the trait value.
 	*@param gene The Gal_Gene wich trait is going to be modified.
 	*/

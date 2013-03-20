@@ -4,7 +4,7 @@ package JGAL;
 public class GAL_LinealRankingSelector extends GAL_RankingSelector{
 
 	/**Auxiliar double used for the selective pressure.*/
-	private double q;
+	protected double q;
 	
 	/**Initialize a new GAL_LinealRankingSelector.
 	*<p>
@@ -42,5 +42,12 @@ public class GAL_LinealRankingSelector extends GAL_RankingSelector{
 			throw new NotValidOperationException("Not Valid Population Exception Catched");
 		}
 		return rs.selectNewPopulation(rankedPopulation,config);
+	}
+	
+	/**Gets the q value.
+	*@return The q value.
+	*/
+	public double getQ(){
+		return q;
 	}
 }

@@ -3,8 +3,8 @@ package JGAL;
 /**The GAL_UniformCrossover extends from GAL_Crossover and is one of the Genetic Operators implemented by default.*/
 public class GAL_UniformCrossover extends GAL_Crossover{
 	
-	/**Probability for changing the segment.*/
-	private double uniformProb;
+	/**Uniform Probability.*/
+	protected double uniformProb;
 	
 	/**Constructs a new GAL_UniformCrossover with a probability of ocurrence given by its first parameter and uniform probability given by the second parameter.
 	*<p>
@@ -53,7 +53,7 @@ public class GAL_UniformCrossover extends GAL_Crossover{
 	*@return The offsprings for the two fathers.
 	*@throws NotValidOperationException If an NotValidGeneException or ClassCastException gets catched.
 	*/
-	private GAL_Chromosome[] crossover(GAL_Chromosome[] fathers, int pos, GAL_ChromosomeConfig config)throws NotValidOperationException{
+	protected GAL_Chromosome[] crossover(GAL_Chromosome[] fathers, int pos, GAL_ChromosomeConfig config)throws NotValidOperationException{
 		GAL_Chromosome[] offsprings= {fathers[0].clone(),fathers[1].clone()};
 		try{
 			config.modifyChromosome(offsprings[0],fathers[1],pos);
@@ -64,5 +64,12 @@ public class GAL_UniformCrossover extends GAL_Crossover{
 			throw new NotValidOperationException("Class Cast Exception catched for a Uniform Crossover");
 		}
 		return offsprings;
+	}
+	
+	/**Gets the value from the field uniformProb.
+	*@return The value from the field uniformProb.
+	*/
+	public double getUniformProb(){
+		return uniformProb;
 	}
 }

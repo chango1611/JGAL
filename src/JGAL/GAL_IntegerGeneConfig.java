@@ -8,6 +8,13 @@ public class GAL_IntegerGeneConfig extends GAL_NumericalGeneConfig<Integer>{
 		super(0,Integer.MAX_VALUE);
 	}
 	
+	/**Initializes a GAL_IntegerGeneConfig with min field equal 0 and max field equal Integer.MAX_VALUE
+	* @param name The name of the gene.
+	*/
+	public GAL_IntegerGeneConfig(String name)throws NotValidGeneException{
+		super(name,0,Integer.MAX_VALUE);
+	}
+	
 	/**Constructs a new GAL_IntegerGeneConfig object with minimum and maximum possible value for the trait of a GAL_Gene.
 	* @param min The minimum value the trait can get. If it's null it will set min as 0.
 	* @param max The maximum value the trait can get. If it's null it will set max as Integer.MAX_VALUE.
@@ -15,6 +22,18 @@ public class GAL_IntegerGeneConfig extends GAL_NumericalGeneConfig<Integer>{
 	*/
 	public GAL_IntegerGeneConfig(Integer min, Integer max) throws NotValidGeneException{
 		super(min==null?0:min, max==null?Integer.MAX_VALUE:max);
+		if(max-min==1)
+			throw new NotValidGeneException("The range [min,max) only accepts one possible value for an Integer Gene");
+	}
+	
+	/**Constructs a new GAL_IntegerGeneConfig object with minimum and maximum possible value for the trait of a GAL_Gene.
+	* @param name The name of the gene.
+	* @param min The minimum value the trait can get. If it's null it will set min as 0.
+	* @param max The maximum value the trait can get. If it's null it will set max as Integer.MAX_VALUE.
+	* @throws NotValidGeneException The range only accepts one value; or if min > max.
+	*/
+	public GAL_IntegerGeneConfig(String name, Integer min, Integer max) throws NotValidGeneException{
+		super(name,min==null?0:min, max==null?Integer.MAX_VALUE:max);
 		if(max-min==1)
 			throw new NotValidGeneException("The range [min,max) only accepts one possible value for an Integer Gene");
 	}

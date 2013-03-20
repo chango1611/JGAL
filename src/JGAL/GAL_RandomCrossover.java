@@ -1,10 +1,10 @@
 package JGAL;
 
-/**The GAL_RandomCrossover extends from GAL_GeneticOperator and is one of the Genetic Operators implemented by default.*/
-public class GAL_RandomCrossover extends GAL_GeneticOperator{
+/**The GAL_RandomCrossover extends from GAL_Crossover and is one of the Genetic Operators implemented by default.*/
+public class GAL_RandomCrossover extends GAL_Crossover{
 	
 	/**Intern operator.*/
-	private GAL_GeneticOperator operator;
+	protected GAL_GeneticOperator operator;
 	
 	/**Constructs a new GAL_RandomCrossover with another Genetic Operator inside it.
 	*@param prob This value is not used by the Random Crossover. 
