@@ -60,7 +60,7 @@ public abstract class GAL_GeneConfig<T>{
 		this.name= name;
 	}
 	
-	/**Assigns a random value to the trait of a GAL_Gene object.
+	/**Assigns a random value to the trait of a GAL_Gene object keeping the configuration in mind.
 	*@param gene The Gal_Gene wich trait is going to be modified.
 	*/
 	public abstract void setRandomValueTo(GAL_Gene gene);

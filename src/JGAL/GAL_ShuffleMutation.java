@@ -4,6 +4,9 @@ import java.util.Arrays;
 
 /**The GAL_ShuffleMutation extends from GAL_GeneticOperator and is one of the Genetic Operators implemented by default.
 *<p>
+*It consists of selecting two positions p1 and p2 randomly such that p1 &#60 p2 and
+*shuffle all the genes found between p1 and p2.
+*<p>
 *Warning: This operator could give an exception if the genes for the chromosome have not the same configuration.
 */
 public class GAL_ShuffleMutation extends GAL_GeneticOperator{

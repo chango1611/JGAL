@@ -2,6 +2,8 @@ package JGAL;
 
 /**The GAL_FitnessFunction is an abstract class for the fitness function.
 *<p>
+*Is used to calculate the fitness of the chromosomes of each generation
+*<p>
 *Subclasses of GAL_FitnessFunction must provide methods for computeFitness.
 */
 public abstract class GAL_FitnessFunction{

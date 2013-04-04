@@ -1,6 +1,17 @@
 package JGAL;
 
-/**The GAL_RouletteSelector extends from GAL_NaturalSelector and is one of the Selection Operators implemented by default.*/
+/**The GAL_RouletteSelector extends from GAL_NaturalSelector and is one of the Selection Operators implemented by default.
+*<p>
+*The Roulette selector is considered the classic selector.
+*Consists of "spinning" a roulette as many times as the number of chromosomes in the population (pop_size).
+*<p>
+*Each wheel space represents a chromosome of the population,
+*so every time the roulette is spinned, a chromosome is selected to be part of the new population.
+*<p>
+*Roulette selector is based on giving larger spaces to chromosomes with higher fitness and
+*smaller space to lower fitness chromosomes.
+*This way, chromosomes with greater aptitude will have a greater probability of being selected into the next generation.
+*/
 public class GAL_RouletteSelector extends GAL_NaturalSelector{
 
 	/**Initialize a new GAL_RouletteSelector.*/

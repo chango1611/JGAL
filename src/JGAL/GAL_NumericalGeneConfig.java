@@ -28,27 +28,27 @@ public abstract class GAL_NumericalGeneConfig<T extends Number & Comparable<T>> 
 	/**Constructs a new GAL_NumericalGeneConfig object with minimum and maximum possible value for the trait of a GAL_Gene.
 	* @param min The minimum value the trait can get.
 	* @param max The maximum value the trait can get.
-	* @throws NotValidGeneException If min > max.
+	* @throws NotValidGeneException If min >= max.
 	*/
 	public GAL_NumericalGeneConfig(T min, T max)throws NotValidGeneException{
 		this.min= min;
 		this.max= max;
 		if(min!=null && max!=null && max.compareTo(min)<=0)
-			throw new NotValidGeneException("min value ("+min+") > max value ("+max+") for a Numerical Gene");
+			throw new NotValidGeneException("min value ("+min+") >= max value ("+max+") for a Numerical Gene");
 	}
 	
 	/**Constructs a new GAL_NumericalGeneConfig object with minimum and maximum possible value for the trait of a GAL_Gene.
 	* @param name The name of the gene.
 	* @param min The minimum value the trait can get.
 	* @param max The maximum value the trait can get.
-	* @throws NotValidGeneException If min > max.
+	* @throws NotValidGeneException If min >= max.
 	*/
 	public GAL_NumericalGeneConfig(String name, T min, T max)throws NotValidGeneException{
 		super(name);
 		this.min= min;
 		this.max= max;
 		if(min!=null && max!=null && max.compareTo(min)<=0)
-			throw new NotValidGeneException("min value ("+min+") > max value ("+max+") for a Numerical Gene");
+			throw new NotValidGeneException("min value ("+min+") >= max value ("+max+") for a Numerical Gene");
 	}
 	
 	/**Assigns a value to the trait of a GAL_Gene object.
@@ -58,8 +58,8 @@ public abstract class GAL_NumericalGeneConfig<T extends Number & Comparable<T>> 
 	*/
 	public void setValueTo(GAL_Gene gene, T val)throws NotValidGeneException{
 		gene.setTrait(val);
-		if(val.compareTo(min)<0 || val.compareTo(max)>0)
-			throw new NotValidGeneException("The trait " + val + " is not in the range ["+min+","+max+"] for this Numerical Gene");
+		if(val.compareTo(min)<0 || val.compareTo(max)>=0)
+			throw new NotValidGeneException("The trait " + val + " is not in the range ["+min+","+max+") for this Numerical Gene");
 	}
 	
 	/**Gets the min field value.

@@ -1,12 +1,17 @@
 package JGAL;
 
-/**The GAL_ChromosomeMutation extends from GAL_GeneticOperator and is one of the Genetic Operators implemented by default.*/
+/**The GAL_ChromosomeMutation extends from GAL_GeneticOperator and is one of the Genetic Operators implemented by default.
+*<p>
+*The chromosome mutation, selects individuals to be affected and then applies classical mutation on the individuals who were selected.
+*<p>
+*This mutation was designed especially for use with the modified handler for Genetic Algorithms.
+*/
 public class GAL_ChromosomeMutation extends GAL_GeneticOperator{
 	
 	/**Probability of mutating a Gene.*/
 	protected double prob2;
 	
-	/**Constructs a new GAL_ChromosomeMutation with a probability of ocurrence given by its only parameter.
+	/**Constructs a new GAL_ChromosomeMutation with probabilities of ocurrence given by its two parameters.
 	*<p>
 	*If the probability is out of the range [0,1], the prob will take the closest value in the range. As Example. The probability 1.5 is equal to probability 1 and the probability -1 is equal to probability 0.
 	*@param prob Probability of ocurrence for the Mutation.
@@ -17,7 +22,7 @@ public class GAL_ChromosomeMutation extends GAL_GeneticOperator{
 		this.prob2= prob2;
 	}
 	
-	/**Applies the mutation for a Population given as the first parameter under the restrictions given by the chromosome configuration.
+	/**Applies the mutation for a Population under the restrictions given by the chromosome configuration.
 	*@param fathers Population thats going to be modified by the operator.
 	*@param config The configuration for the chromosomes of the current and next generation.
 	*@return A new population created after applying the mutation.

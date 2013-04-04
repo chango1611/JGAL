@@ -7,7 +7,7 @@ public class GAL_BinaryGeneConfig extends GAL_GeneConfig<Byte>{
 	public GAL_BinaryGeneConfig(){
 	}
 	
-	/**Initializes a new GAL_BinaryGeneConfig by calling super.
+	/**Initializes a new GAL_BinaryGeneConfig with a name by calling super.
 	*@param name The name of the gene.
 	*/
 	public GAL_BinaryGeneConfig(String name){

@@ -1,6 +1,12 @@
 package JGAL;
 
-/**The GAL_UniformCrossover extends from GAL_Crossover and is one of the Genetic Operators implemented by default.*/
+/**The GAL_UniformCrossover extends from GAL_Crossover and is one of the Genetic Operators implemented by default.
+*<p>
+*The uniform crossover is a generalization of the Multi-Points Crossover,
+*where for each bit in the offspring is decided with probability p (uniform probability),
+*which parent will collaborate with that position.
+*The second offspring will get the bits from the other parent.
+*/
 public class GAL_UniformCrossover extends GAL_Crossover{
 	
 	/**Uniform Probability.*/
@@ -17,13 +23,16 @@ public class GAL_UniformCrossover extends GAL_Crossover{
 		this.uniformProb= uniformProb;
 	}
 	
-	/**Applies the segment crossover for a Population given as the first parameter under the restrictions given by the chromosome configuration.
+	/**Applies the uniform crossover for a Population given as the first parameter under the restrictions given by the chromosome configuration.
 	*@param fathers Population thats going to be modified by the operator.
 	*@param config The configuration for the chromosomes of the current and next generation.
-	*@return A new population created after applying the Segment crossover.
+	*@return A new population created after applying the uniform crossover.
 	*@throws NotValidOperationException If an operation can't be done with the given parameters.
 	*/
 	public GAL_Population applyOperator(GAL_Population fathers, GAL_ChromosomeConfig config)throws NotValidOperationException{
+		if(config.size()==1)
+			return fathers;
+			
 		GAL_Chromosome[][] chrom1= distributeChromosomes(fathers.getChromosomes(),prob), //Distribuye segun la prob[0] en fathers y sobrevivientes
 		chrom2;
 		correctSizeFromFirstGroup(chrom1,2); //Si el primer grupo no es agrupable, modifica los grupos

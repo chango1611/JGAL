@@ -1,6 +1,12 @@
 package JGAL;
 
-/**The GAL_SegmentCrossover extends from GAL_Crossover and is one of the Genetic Operators implemented by default.*/
+/**The GAL_SegmentCrossover extends from GAL_Crossover and is one of the Genetic Operators implemented by default.
+*<p>
+*The crossover segment is a variant of the Multi-Points crossover,
+*where the number of crossing points may vary.
+*The fixed number of crossings is changed by a chance to change of segment
+*in any gene.
+*/
 public class GAL_SegmentCrossover extends GAL_Crossover{
 	
 	/**Probability for changing the segment.*/
@@ -24,6 +30,9 @@ public class GAL_SegmentCrossover extends GAL_Crossover{
 	*@throws NotValidOperationException If an operation can't be done with the given parameters.
 	*/
 	public GAL_Population applyOperator(GAL_Population fathers, GAL_ChromosomeConfig config)throws NotValidOperationException{
+		if(config.size()==1)
+			return fathers;
+			
 		GAL_Chromosome[][] chrom1= distributeChromosomes(fathers.getChromosomes(),prob), //Distribuye segun la prob[0] en fathers y sobrevivientes
 		chrom2;
 		correctSizeFromFirstGroup(chrom1,2); //Si el primer grupo no es agrupable, modifica los grupos

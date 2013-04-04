@@ -2,8 +2,49 @@ package JGAL;
 
 import java.util.Arrays;
 
-/**The GAL_ModHandler extends from GAL_Handler and it follows the GAmod structure.*/
+/**The GAL_ModHandler extends from GAL_Handler and it follows the GAmod structure:
+*<p>
+*<b>procedure</b> AGmod<br>
+*<b>begin</b><br>
+*t = 0;<br>
+*initialize P(t);<br>
+*evaluate P(t);<br>
+*<b>while</b> (<b>not</b> condición de terminación) <b>do</b><br>
+*t= t+1;<br>
+*select fathers from P(t – 1);<br>
+*select deaths from P(t – 1);<br>
+*create P(t): reproduce fathers;<br>
+*evaluate P(t);<br>
+*<b>end;</b><br>
+*<b>end;</b><br>
+*<p>
+*As shown, the selection is divided into two steps:
+*<ul type="disc">
+*	<li><p><tt>Step 1 – Select Fathers: Independently are selected r chromosomes
+*	(Not necessarily distinct) to reproduce.</tt></p></li>
+*	<li><p><tt>Step 2 – Select Deaths: r different chromosomes are selected to die.</tt></p></li>
+*</ul>
+*<p>
+*After these two steps, three not necessarily disjoint groups are formed:
+*<ul type="disc">
+*	<li><p><tt>r chromosomes to reproduce.</tt></p></li>
+*	<li><p><tt>r chromosomes to die.</tt></p></li>
+*	<li><p><tt>The rest of the chromosomes, called neutral chromosomes.</tt></p></li>
+*</ul>
+*<p>
+*The new population will be created by:
+*<ul type="disc">
+*	<li><p><tt>The r offsprings formed from the r parents.</tt></p></li>
+*	<li><p><tt>The pop_size – r chromosomes that were not chosen to die.</tt></p></li>
+*</ul>
+*<p>
+*<b>Note.</b> The sum of all the probabilities of ocurrence of the genetic operators must be equal to 1,
+*since they are going to be applied over all the r chromosomes to reproduce.
+*/
 public class GAL_ModHandler extends GAL_Handler{
+	
+	/**The real probability for each operator*/
+	protected double[] old_prob;
 	
 	/**The expected size for each genetic operator to be applied*/
 	protected int[] operator_size;
@@ -11,24 +52,25 @@ public class GAL_ModHandler extends GAL_Handler{
 	/**The number of fathers to be selected.*/
 	protected int r;
 	
-	/**Initializes a new GAL_ClassicHandler with a configuration and a maximum number of generations.
+	/**Initializes a new GAL_ModHandler with a configuration, maximum number of generations, population size, window size and r.
 	*@param configuration The configuration to be used by the Genetic Algorithm.
 	*@param maxGenerations The maximum number of Generations allowed.
 	*@param populationSize The size of the population.
 	*@param windowSize The size for the window of populations to be remembered.
 	*@param r The number of fathers to be selected.
-	*@throws NotValidOperationException If the sum of all probabilities for the genetic operators is not equal to one with a precision of 0.01
+	*@throws NotValidOperationException If the sum of all probabilities for the genetic operators is not equal to 1 with a lost of precision of 0.01
 	*/
 	public GAL_ModHandler(GAL_Configuration configuration, int maxGenerations, int populationSize, int windowSize, int r)throws NotValidOperationException{
 		super(configuration, maxGenerations, populationSize, windowSize);
 		this.r= r;
 		int i, size= configuration.operatorsArraySize();
-		double aux, sum= 0;
+		double sum= 0;
+		old_prob= new double[size];
 		operator_size= new int[size];
 		for(i=0;i<size;i++){
-			aux= configuration.changeProbTo(i,1.0);
-			operator_size[i]= (int)Math.round(r*aux);
-			sum+= aux;
+			old_prob[i]= configuration.changeProbTo(i,1.0);
+			operator_size[i]= (int)Math.round(r*old_prob[i]);
+			sum+= old_prob[i];
 		}
 		if(Math.abs(1.0-sum)>0.01)
 			throw new NotValidOperationException("The sum of all probabilities for the genetic operators must be 1");
@@ -82,5 +124,9 @@ public class GAL_ModHandler extends GAL_Handler{
 			//Guarda la informacion de la nueva generacion
 			saveData(population);
 		}
+		
+		//restauramos las probabilidades originales
+		for(i=0;i<old_prob.length;i++)
+			configuration.changeProbTo(i,old_prob[i]);
 	}
 }

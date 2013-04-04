@@ -2,6 +2,8 @@ package JGAL;
 
 /**The GAL_SwapMutation extends from GAL_GeneticOperator and is one of the Genetic Operators implemented by default.
 *<p>
+*The swap mutation consists of randomly exchanging two genes from the selected chromosome.
+*<p>
 *Warning: This operator could give an exception if the genes for the chromosome have not the same configuration.
 */
 public class GAL_SwapMutation extends GAL_GeneticOperator{
@@ -15,7 +17,7 @@ public class GAL_SwapMutation extends GAL_GeneticOperator{
 		super(prob);
 	}
 	
-	/**Applies the swap for a Population given as the first parameter under the restrictions given by the chromosome configuration.
+	/**Applies the swap mutation for a Population given as the first parameter under the restrictions given by the chromosome configuration.
 	*@param fathers Population thats going to be modified by the operator.
 	*@param config The configuration for the chromosomes of the current and next generation.
 	*@return A new population created after applying the mutation.

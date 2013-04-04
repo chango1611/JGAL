@@ -1,6 +1,13 @@
 package JGAL;
 
-/**The GAL_TournamentSelector extends from GAL_NaturalSelector and is one of the Selection Operators implemented by default.*/
+/**The GAL_TournamentSelector extends from GAL_NaturalSelector and is one of the Selection Operators implemented by default.
+*<p>
+*The tournament selector consists in creating a number of tournaments equal to the size of the population.
+*Where the winner of each tournament will become part of the new population.
+*<p>
+*Each tournament consists of selecting a number of chromosomes in the population and make them "compete".
+*The winner is the chromosome with the best fitness.
+*/
 public class GAL_TournamentSelector extends GAL_NaturalSelector{
 
 	/**The size for each tournament.*/

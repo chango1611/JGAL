@@ -1,25 +1,25 @@
 package JGAL;
 
-/**The GAL_Configuration contains all the configuration data needed for running a GA and the methods that requiere of them.*/
+/**The GAL_Configuration contains all the configuration data needed for running a GA and the methods that requiere of the configuration to work.*/
 public class GAL_Configuration{
 
-	/**The configuration for the chromosomes that will be used by this program.*/
+	/**The configuration for the chromosomes that will be used by this GA.*/
 	protected GAL_ChromosomeConfig chromosomeConfig;
-	/**The termination condition that will be used by this program.*/
+	/**The termination condition that will be used by this GA.*/
 	protected GAL_TerminationCondition condition;
-	/**The fitness function that will be used by this program.*/
+	/**The fitness function that will be used by this GA.*/
 	protected GAL_FitnessFunction fitnessFunction;
-	/**The genetic operators that will be used by this program.*/
+	/**The genetic operators that will be used by this GA.*/
 	protected GAL_GeneticOperator[] operators;
-	/**The natural selector that will be useb by this program*/
+	/**The natural selector that will be useb by this GA*/
 	protected GAL_NaturalSelector selector;
 
 	/**Constructs a new GAL_Configuration with the necessary information for running a GA.
-	*@param chromosomeConfig The configuration for the chromosomes that will be used by this program.
-	*@param condition The termination condition that will be used by this program.
-	*@param fitnessFunction The fitness function that will be used by this program.
-	*@param selector The natural selector that will be useb by this program.
-	*@param operators The genetic operators that will be used by this program.
+	*@param chromosomeConfig The configuration for the chromosomes that will be used by this GA.
+	*@param condition The termination condition that will be used by this GA.
+	*@param fitnessFunction The fitness function that will be used by this GA.
+	*@param selector The natural selector that will be useb by this GA.
+	*@param operators The genetic operators that will be used by this GA.
 	*/
 	public GAL_Configuration(GAL_ChromosomeConfig chromosomeConfig, GAL_TerminationCondition condition, GAL_FitnessFunction fitnessFunction, GAL_NaturalSelector selector, GAL_GeneticOperator[] operators){
 		this.chromosomeConfig= chromosomeConfig;
@@ -56,7 +56,7 @@ public class GAL_Configuration{
 		return new GAL_Population(size,chromosomeConfig);
 	}
 	
-	/**Creates a new population under the configuration given by chromosomeConfig.
+	/**Creates a new population under the configuration given by chromosomeConfig and an array of chromosomes.
 	*@param chromosomes The chromosomes that will be used for the new population.
 	*@return The new GAL_Population.
 	*@throws NotValidChromosomeException If the array of chromosomes does not match with the configuration.
@@ -78,6 +78,7 @@ public class GAL_Configuration{
 	/**Applies all the genetic operators in the order they are in the operators array.
 	*@param origin The GAL_Population thats going to be modified by all operators.
 	*@return A new GAL_Population wich has been modified by all the genetic operators.
+	*@throws NotValidOperationException If an operation can't be done with the given parameters.
 	*/
 	public GAL_Population operatePopulation(GAL_Population origin)throws NotValidOperationException{
 		GAL_Population ret= origin.clone();
@@ -99,7 +100,7 @@ public class GAL_Configuration{
 	/**Changes the probability of the genetic operator at the position indicated by the first parameter.
 	*@param pos The position of the genetic operator.
 	*@param prob The new probability for the genetic operator.
-	*@return The old robability for the genetic operator.
+	*@return The old probability for the genetic operator.
 	*/
 	public double changeProbTo(int pos, double prob){
 		double ret= operators[pos].getProb();

@@ -1,6 +1,10 @@
 package JGAL;
 
-/**The GAL_NonLinealRankingSelector extends from GAL_RankingSelector and is one of the Selection Operators implemented by default.*/
+/**The GAL_NonLinealRankingSelector extends from GAL_RankingSelector and is one of the Selection Operators implemented by default.
+*<p>
+*It is based on the non lineal formula:<br>
+*Prob(rank)= q * (1-q)**(rank-1)
+*/
 public class GAL_NonLinealRankingSelector extends GAL_RankingSelector{
 
 	/**Auxiliar double used for the selective pressure.*/

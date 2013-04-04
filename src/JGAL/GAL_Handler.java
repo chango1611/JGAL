@@ -28,13 +28,13 @@ public abstract class GAL_Handler{
 	/**The size of the population.*/
 	protected int populationSize;
 		
-	/**The size for the window of populations to be remembered.*/
+	/**The maximum size for the window of populations.*/
 	protected int windowSize;
 	
-	/**Stores the window of populations to be remembered.*/
+	/**Stores the window of populations to be used in the termination condition.*/
 	protected LinkedList<GAL_Population> window;
 	
-	/**Initializes a new GAL_Handler with a configuration and a maximum number of generations.
+	/**Initializes a new GAL_Handler with a configuration, a maximum number of generations, the population size and the window size.
 	*@param configuration The configuration to be used by the Genetic Algorithm.
 	*@param maxGenerations The maximum number of Generations allowed.
 	*@param populationSize The size of the population.
@@ -51,7 +51,9 @@ public abstract class GAL_Handler{
 		window= new LinkedList<GAL_Population>();
 	}
 	
-	/**Saves the information pertinent to the problem
+	/**Saves the information pertinent to the problem.
+	*<p>
+	*This must be used for each cycle in the runGAL to work properly.
 	*@param population The population wich information is getting saved
 	*/
 	protected void saveData(GAL_Population population){	
@@ -71,7 +73,7 @@ public abstract class GAL_Handler{
 	*/
 	public GAL_Chromosome getBestFromAll(){
 		GAL_Chromosome winner= bestChromosomeFromGeneration[0];
-		for(int i=1;i<maxGenerations && i<=lastGeneration;i++){
+		for(int i=1;i<maxGenerations && i<lastGeneration;i++){
 			if(winner.compareTo(bestChromosomeFromGeneration[i]) < 0)
 				winner= bestChromosomeFromGeneration[i];
 		}
@@ -79,6 +81,8 @@ public abstract class GAL_Handler{
 	}
 	
 	/**Gets an array of GAL_Chromosomes where each one represents the best chromosome for each generation.
+	*<p>
+	*If the handler ends because of the termination condition, then the last chromosomes will be null.
 	*@return Array of GAL_Chromosomes where each one represents the best chromosome for each generation.
 	*/
 	public GAL_Chromosome[] getBestFromEach(){
@@ -104,6 +108,7 @@ public abstract class GAL_Handler{
 	}
 	
 	/**Gets an array of doubles where each one represents the average fitness for each generation.
+	*If the handler ends because of the termination condition, then the last values will be null.
 	*@return Array of doubles where each one represents the average fitness for each generation.
 	*/
 	public double[] getAverageFitnessFromEach(){
@@ -125,16 +130,16 @@ public abstract class GAL_Handler{
 		return window.toArray(new GAL_Population[0]);
 	}
 	
-	/**Gets an population from the window of population denoted by the int parameter.
-	*@param pos The position of the window wich population is going to be returned.
+	/**Gets the population from the window that is in the position denoted by the int parameter.
+	*@param pos The position in the window that is going to be returned.
 	*@return The window of population.
 	*/
 	public GAL_Population getPopulationFromWindow(int pos){
 		return window.get(pos);
 	}
 	
-	/**Gets the number for the last generation to be executed.
-	*@return The number for the last generation to be executed.
+	/**Gets the number of the last generation that was executed + 1.
+	*@return The number of the last generation that was executed + 1.
 	*/
 	public int getLastGenerationNumber(){
 		return lastGeneration;

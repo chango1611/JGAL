@@ -1,6 +1,10 @@
 package JGAL;
 
-/**The GAL_ClassicRankingSelector extends from GAL_RankingSelector and is one of the Selection Operators implemented by default.*/
+/**The GAL_ClassicRankingSelector extends from GAL_RankingSelector and is one of the Selection Operators implemented by default.
+*<p>
+*Is the Original Ranking selector.
+*It is based on the expected number of offspring for the best chromosome of the population.
+*/
 public class GAL_ClassicRankingSelector extends GAL_RankingSelector{
 
 	/**Upper limit for the expected number of offspring.*/
@@ -16,7 +20,7 @@ public class GAL_ClassicRankingSelector extends GAL_RankingSelector{
 			throw new NotValidOperationException("The upper limit must be a possitive number for a Classic Ranking Selector");
 	}
 	
-	/**Selects the new population to be used in the next generation by using the tournament selection.
+	/**Selects the new population to be used in the next generation by using the classic ranking selection.
 	*@param origin The population thats going to be used for the selection.
 	*@return A new population created from the origin population.
 	*@throws NotValidOperationException If an operation can't be done with the given parameters.
@@ -40,8 +44,8 @@ public class GAL_ClassicRankingSelector extends GAL_RankingSelector{
 		return rs.selectNewPopulation(rankedPopulation,config); 
 	}
 	
-	/**Gets the max expected number of offsprings.
-	*@return The max expected number of offsprings.
+	/**Gets the maximum expected number of offsprings.
+	*@return The maximum expected number of offsprings.
 	*/
 	public int getMax(){
 		return max;

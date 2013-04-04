@@ -1,6 +1,19 @@
 package JGAL;
 
-/**The GAL_ClassicMutation extends from GAL_GeneticOperator and is one of the Genetic Operators implemented by default.*/
+/**The GAL_ClassicMutation extends from GAL_GeneticOperator and is one of the Genetic Operators implemented by default.
+*The mutation changes the allele that has a gene,
+*for example in the case of a bit string,
+*applying on a gene mutation change from 0 to 1 or vice versa.
+*<p>
+*For each gene of each chromosome it must:
+*<p>
+*<ul type="disc">
+*	<li><p><tt>Generate a random number r in the range [0,1]</tt></p></li>
+*	<li><p><tt>If r &#60 pm then the gene is mutated</tt></p></li>
+*</ul>
+*<p>
+*Where pm is the probability of occurrence of the mutation.
+*/
 public class GAL_ClassicMutation extends GAL_GeneticOperator{
 	
 	/**Constructs a new GAL_ClassicMutation with a probability of ocurrence given by its only parameter.

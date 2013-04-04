@@ -1,6 +1,21 @@
 package JGAL;
 
-/**The GAL_ClassicHandler extends from GAL_Handler and it follows the classic Genetic Algorithm structure.*/
+/**The GAL_ClassicHandler extends from GAL_Handler and it follows the next program structure.
+*<p>
+<b>procedure</b> Genetic Algorithm<br>
+*<b>begin</b><br>
+*t = 0;<br>
+*initialize P(t);<br>
+*evaluate P(t);<br>
+*<b>while</b> (<b>not</b> condición de terminación) <b>do</b><br>
+*t= t+1;<br>
+*select P(t) from P(t –- 1);<br>
+*alter P(t);<br>
+*evaluate P(t);<br>
+*<b>end;</b><br>
+*return;<br>
+*<b>end;</b>
+*/
 public class GAL_ClassicHandler extends GAL_Handler{
 	
 	/**Initializes a new GAL_ClassicHandler with a configuration and a maximum number of generations.

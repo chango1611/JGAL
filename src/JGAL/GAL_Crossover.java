@@ -5,6 +5,8 @@ import java.util.LinkedList;
 
 /**The GAL_Crossover is an abstract class wich extends from the GAL_GeneticOperator and haves auxiliar methods normaly used by the crossover operators.
 *<p>
+*The crossover operators are made between pairs of chromosomes and generate new pairs of chromosomes.
+*<p>
 *Subclasses of GAL_Crossover must provide methods for applyOperator.
 */
 public abstract class GAL_Crossover extends GAL_GeneticOperator{
@@ -18,14 +20,14 @@ public abstract class GAL_Crossover extends GAL_GeneticOperator{
 		super(prob);
 	}
 	
-	/**Distributes in two groupes the chromosomes given in the first argument by the probability given by the second argument.
+	/**Distributes in two groupes the chromosomes given in the first argument by the probability given in the second argument.
 	*<p>
 	*If the value given by rand is less or equal to prob then the chromosome at the moment gets in the first group else it gets in the second group.
 	*@param chromosomes The chromosomes to be distributed.
 	*@param prob The probability for the distribution.
 	*@return An array of arrays of GAL_Chromosome that represents the distribution. 
 	*/
-	public GAL_Chromosome[][] distributeChromosomes(GAL_Chromosome[] chromosomes, double prob){
+	protected GAL_Chromosome[][] distributeChromosomes(GAL_Chromosome[] chromosomes, double prob){
 		LinkedList<GAL_Chromosome> chrom1= new LinkedList<GAL_Chromosome>(), chrom2= new LinkedList<GAL_Chromosome>();
 		for(int i=0; i<chromosomes.length; i++){
 			if(rand.nextDouble()<=prob)
@@ -37,12 +39,12 @@ public abstract class GAL_Crossover extends GAL_GeneticOperator{
 		return ret;
 	}
 	
-	/**Creates subgroups of chromosomes of size of the second parameter
+	/**Creates subgroups of chromosomes which size is equal to the second parameter
 	*@param chrom The chromosomes to be divided in groups
 	*@param size The size of each subgroup
 	*@return An array of arrays of GAL_Chromosome where each array of GAL_Chromosome is a subgroup.
 	*/
-	public GAL_Chromosome[][] groupChromosomes(GAL_Chromosome[] chrom,int size){
+	protected GAL_Chromosome[][] groupChromosomes(GAL_Chromosome[] chrom,int size){
 		if(chrom.length==0){
 			return new GAL_Chromosome[0][0];
 		}
@@ -63,7 +65,7 @@ public abstract class GAL_Crossover extends GAL_GeneticOperator{
 	*@param chrom First array of chromosomes.
 	*@param n The number at witch the first group should be subgrouped.
 	*/
-	public void correctSizeFromFirstGroup(GAL_Chromosome[][] chrom, int n){
+	protected void correctSizeFromFirstGroup(GAL_Chromosome[][] chrom, int n){
 		if(chrom.length<n){
 			chrom[1]= GAL_Util.concatArrays(chrom[1],chrom[0],new GAL_Chromosome[0]);
 			chrom[0]= new GAL_Chromosome[0];

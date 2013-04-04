@@ -1,6 +1,19 @@
 package JGAL;
 
-/**The GAL_ClassicCrossover extends from GAL_Crossover and is one of the Genetic Operators implemented by default.*/
+/**The GAL_ClassicCrossover extends from GAL_Crossover and is one of the Genetic Operators implemented by default.
+*<p>
+*The classic crossover consists of choosing a random point p, which indicates the point of crossover between the two chromosomes, as shown below:
+*<p>
+*B= (b1b2...bpbp+1...bm) and
+*<p>
+*C= (c1c2...cpcp+1...cm)
+*<p>
+*Where bi are the genes of B and ci the genes of C. These chromosomes are replaced by new chromosomes of the form:
+*<p>
+*B'= (b1b2...bpcp+1...cm) and
+*<p>
+*C'= (c1c2...cpbp+1...bm)
+*/
 public class GAL_ClassicCrossover extends GAL_Crossover{
 
 	/**Constructs a new GAL_ClassicCrossover with a probability of ocurrence given by its only parameter.
@@ -12,13 +25,16 @@ public class GAL_ClassicCrossover extends GAL_Crossover{
 		super(prob);
 	}
 	
-	/**Applies the classic crossover for a Population given as the first parameter under the restrictions given by the chromosome configuration.
+	/**Applies the classic crossover for a Population under the restrictions given by the chromosome configuration.
 	*@param fathers Population thats going to be modified by the operator.
 	*@param config The configuration for the chromosomes of the current and next generation.
 	*@return A new population created after applying the classic crossover.
 	*@throws NotValidOperationException If an operation can't be done with the given parameters.
 	*/
 	public GAL_Population applyOperator(GAL_Population fathers, GAL_ChromosomeConfig config)throws NotValidOperationException{
+		if(config.size()==1)
+			return fathers;
+			
 		GAL_Chromosome[][] chrom1= distributeChromosomes(fathers.getChromosomes(),prob), //Distribuye segun la prob[0] en fathers y sobrevivientes
 		chrom2;
 		correctSizeFromFirstGroup(chrom1,2); //Si el primer grupo no es agrupable, modifica los grupos
@@ -35,7 +51,7 @@ public class GAL_ClassicCrossover extends GAL_Crossover{
 		}
 	}
 	
-	/**Applies the crossover betwen each pair of chromosomes under the restrictions given by the chromosome configuration.
+	/**Applies the crossover between each pair of chromosomes under the restrictions given by the chromosome configuration.
 	*@param fathers An array wich first two positions will be taken to be crossovered.
 	*@param pos The position where the crossover is going to be applied.
 	*@param config The chromosome configuration.

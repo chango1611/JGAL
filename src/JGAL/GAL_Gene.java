@@ -6,12 +6,12 @@ public class GAL_Gene{
 	/**An Object that represents the trait of the gene.*/
 	protected Object trait;
 	
-	/**Initializes a new GAL_Gene wich trait is set on null.*/
+	/**Initializes a new GAL_Gene which trait is set on null.*/
 	public GAL_Gene(){
 		trait= null;
 	}
 	
-	/**Constructs a new GAL_Gene object wich trait field is assigned whith the trait argument.
+	/**Constructs a new GAL_Gene object wich trait field is assigned whith the trait passed by argument.
 	* @param trait The trait to be assigned.
 	*/
 	public GAL_Gene(Object trait){

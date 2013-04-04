@@ -7,12 +7,12 @@ import java.util.List;
 /**Group of methods that are usefull for the creation of an Genetic Algorithm*/
 public class GAL_Util{
 
-	/**Random object wich can be used inside the others methods as distributeChromosomes.*/
+	/**Random object wich can be used inside the others methods as Shuffle.*/
 	protected static Random rand= new Random();
 	
-	/**Concatenate two arrays of any type and returned as an new array.
+	/**Concatenate two arrays of the same type and return it as an new array.
 	*<p>
-	*If the third parameter is big enough to store the return, it will be stored in there; otherwise a new array will be created.
+	*If the third parameter is big enough to store the return, it will be stored there; otherwise a new array will be created.
 	*@param array1 One of the arrays to concatenate.
 	*@param array2 The other one of the arrays to concatenate.
 	*@param type The class of the copy to be returned.
@@ -26,12 +26,12 @@ public class GAL_Util{
 		return Arrays.asList(ret).toArray(type);
 	}
 	
-	/**Concatenate many arrays of any type and returned as an new array.
+	/**Concatenate many arrays of the same type and return it as an new array.
 	*<p>
-	*If the second parameter is big enough to store the return, it will be stored in there; otherwise a new array will be created.
+	*If the second parameter is big enough to store the return, it will be stored there; otherwise a new array will be created.
 	*@param multiArray All the arrays that will be concatenated.
 	*@param type The class of the copy to be returned.
-	*@return The result of concatenating all the arrays in mltiArray 
+	*@return The result of concatenating all the arrays in multiArray 
 	*/
 	public static <T> T[] concatArrays(T[][] multiArray, T[] type){
 		if(multiArray.length==0)
@@ -43,9 +43,9 @@ public class GAL_Util{
 		return ret;
 	}
 	
-	/**Split an array of any type at an position given by the second parameter.
+	/**Split an array of any type at a position given by the second parameter.
 	*<p>
-	*If the third parameter is big enough to store the return, it will be stored in there; otherwise a new array will be created.
+	*If the third parameter is big enough to store the return, it will be stored there; otherwise a new array will be created.
 	*@param array The array that will be splitted.
 	*@param pos The position where the array will be splitted.
 	*@param type The class of the copy to be returned.
@@ -57,9 +57,9 @@ public class GAL_Util{
 		return Arrays.asList(ret).toArray(type);
 	}
 	
-	/**Extract randomly a number of elements from an array by shuffling and dividing the array.
+	/**Split an array of any type, by selecting randomly a number of elements to be part of the second array and the rest the first array.
 	*<p>
-	*If the third parameter is big enough to store the return, it will be stored in there; otherwise a new array will be created.
+	*If the third parameter is big enough to store the return, it will be stored there; otherwise a new array will be created.
 	*@param array The array that will get the extraction.
 	*@param number The number of elements that will be extracted..
 	*@param type The class of the copy to be returned.

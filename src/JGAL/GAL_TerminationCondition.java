@@ -1,8 +1,8 @@
 package JGAL;
 
-import java.util.LinkedList;
-
 /**The GAL_TerminationCondition is an abstract class for the termination condition.
+*<p>
+*The termination condition is used to end the run of a GA handler before getting to the maximum generation.
 *<p>
 *Subclasses of GAL_TerminationCondition must provide methods for evaluateTerminationCondition.
 */

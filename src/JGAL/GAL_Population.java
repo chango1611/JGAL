@@ -1,12 +1,12 @@
 package JGAL;
 
-/**The GAL_Population represents the population of chromosomes for one generation*/
+/**The GAL_Population represents the population of chromosomes for a generation*/
 public class GAL_Population{
 	
 	/**The chromosomes that represents the population*/
 	protected GAL_Chromosome[] chromosomes;
 	
-	/**Constructs a new GAL_Population of size given by the first parameter and chromosomes created under the configuration of the second parameter.
+	/**Constructs a new GAL_Population of size given by the first parameter using the chromosome configuration.
 	*@param size The number of chromosomes in the population.
 	*@param config The configuration used for the creation of the new chromosomes.
 	*@throws NotValidChromosomeException If the configuration has an empty gene configuration.

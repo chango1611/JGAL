@@ -1,6 +1,6 @@
 package JGAL;
 
-/**The GAL_ChromosomeConfig is a class for the configuration of a GAL_Chromosome*/
+/**The GAL_ChromosomeConfig is a class for the configuration of the GAL_Chromosome*/
 public class GAL_ChromosomeConfig{
 	/**Array with the configuration of each gene of the chromosome*/
 	protected GAL_GeneConfig[] configuration;
@@ -15,7 +15,7 @@ public class GAL_ChromosomeConfig{
 			throw new NotValidChromosomeException("The chromosome must hava at least one gene");
 	}
 	
-	/**Creates and returns a new GAL_Chromosome using the method createNewGene.
+	/**Creates and returns a new GAL_Chromosome using the method createNewGene in GAL_GeneConfig.
 	*@return The new GAL_Chromosome.
 	*@throws NotValidChromosomeException If the configuration array is empty.
 	*/
@@ -34,8 +34,8 @@ public class GAL_ChromosomeConfig{
 		return configuration;
 	}
 	
-	/**Returns the size of the configuration array.
-	*@return The size of the configuration array.
+	/**Returns the size of the genes configuration array.
+	*@return The size of the genes configuration array.
 	*/
 	public int size(){
 		return configuration.length;
@@ -57,7 +57,7 @@ public class GAL_ChromosomeConfig{
 		configuration[pos].setRandomValueTo(chromosome.getGene(pos));
 	}
 	
-	/**Modifies randomly a Chromosome at the genes between the positions min and max.
+	/**Modifies randomly the genes of the Chromosome parameter between the positions min(inclusive) and max(exclusive).
 	*@param chromosome The GAL_Chromosome to be modified.
 	*@param min The first position to be modified.
 	*@param max The first position to not be modified after min.
@@ -78,13 +78,13 @@ public class GAL_ChromosomeConfig{
 		configuration[pos].setValueToFrom(chromosome.getGene(pos),chromosome2.getGene(pos));
 	}
 	
-	/**Modifies the first Chromosome by the second Chromosome at the genes between the positions min and max.
+	/**Modifies the first Chromosome by the second Chromosome at the genes between the positions min(inclusive) and max(exclusive).
 	*@param chromosome The GAL_Chromosome to be modified.
 	*@param chromosome2 The GAL_Chromosome to be used as modifier.
 	*@param min The first position to be modified.
 	*@param max The first position to not be modified after min.
-	*@throws NotValidGeneException If at least one of the genes between min and max from the first chromosome is not compatible with the genes from the second one.
-	*@throws ClassCastException If at least one of the genes between min and max from the second chromosome is not castable.
+	*@throws NotValidGeneException If at least one of the genes between min(inclusive) and max(exclusive) from the first chromosome is not compatible with the genes from the second one.
+	*@throws ClassCastException If at least one of the genes between min(inclusive) and max(exclusive) from the second chromosome is not castable.
 	*/
 	public void modifyChromosome(GAL_Chromosome chromosome, GAL_Chromosome chromosome2, int min, int max)throws NotValidGeneException,ClassCastException{
 		for(int pos=min; pos<max; pos++)

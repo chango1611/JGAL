@@ -38,7 +38,7 @@ public class GAL_IntegerGeneConfig extends GAL_NumericalGeneConfig<Integer>{
 			throw new NotValidGeneException("The range [min,max) only accepts one possible value for an Integer Gene");
 	}
 	
-	/**Assigns a random value to the trait of a binary GAL_Gene object with an equal probability to get any number in the range [min,max) as the trait value.
+	/**Assigns a random value to the trait of an integer GAL_Gene object with an equal probability to get any number in the range [min,max) as the trait value.
 	*@param gene The Gal_Gene wich trait is going to be modified.
 	*/
 	public void setRandomValueTo(GAL_Gene gene){

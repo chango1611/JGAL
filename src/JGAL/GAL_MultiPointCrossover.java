@@ -2,10 +2,30 @@ package JGAL;
 
 import java.util.Arrays;
 
-/**The GAL_MultiPointCrossover extends from GAL_Crossover and is one of the Genetic Operators implemented by default.*/
+/**The GAL_MultiPointCrossover extends from GAL_Crossover and is one of the Genetic Operators implemented by default.
+*<p>
+*The multi-point crossover consists of choosing multiple crossing points randomly selected.
+*To do this, the user must define how many crossing points will be used.
+*<p>
+*e.g:
+*<p>
+*If the user defined points that will be used as 2.<br>
+*Furthermore, assuming that the selected points are p and q (With p&#60q).<br>
+*Given the following two chromosomes:
+*B= (b1b2...bpbp+1...bq-1bqbq+1...bm) and<br>
+*C= (c1c2...cpcp+1...cq-1cqcq+1...cm)
+<p>
+*Where bi are the genes of B and ci the genes of C. These chromosomes are replaced by new
+*chromosomes of the form:
+*<p>
+*B'= (b1b2...cpcp+1...cq-1cqbq+1...bm) and<br>
+*C'= (c1c2...bpbp+1...bq-1bqcq+1...cm)
+*<p>
+*<b>Note.</b> The number of points of intersection must be an even number greater than 0.
+*/
 public class GAL_MultiPointCrossover extends GAL_Crossover{
 	
-	/**Number of crossover points.*/
+	/**Number of crossing points.*/
 	protected int nPoints;
 	
 	/**Constructs a new GAL_MultiPointCrossover with a probability of ocurrence given by its first parameter and number of crossover points given by the second parameter.
@@ -24,13 +44,16 @@ public class GAL_MultiPointCrossover extends GAL_Crossover{
 			throw new NotValidOperationException("The number of points must be greater than 0 for a Multi-Point Crossover");
 	}
 	
-	/**Applies the multi-point crossover for a Population given as the first parameter under the restrictions given by the chromosome configuration.
+	/**Applies the multi-point crossover for a Population under the restrictions given by the chromosome configuration.
 	*@param fathers Population thats going to be modified by the operator.
 	*@param config The configuration for the chromosomes of the current and next generation.
 	*@return A new population created after applying the Multi-Point crossover.
 	*@throws NotValidOperationException If an operation can't be done with the given parameters.
 	*/
 	public GAL_Population applyOperator(GAL_Population fathers, GAL_ChromosomeConfig config)throws NotValidOperationException{
+		if(config.size()==1)
+			return fathers;
+			
 		GAL_Chromosome[][] chrom1= distributeChromosomes(fathers.getChromosomes(),prob), //Distribuye segun la prob[0] en fathers y sobrevivientes
 		chrom2;
 		correctSizeFromFirstGroup(chrom1,2); //Si el primer grupo no es agrupable, modifica los grupos

@@ -5,11 +5,13 @@ import java.util.LinkedList;
 
 /**The GAL_GeneticOperator is an abstract class for the genetic operators.
 *<p>
+*The Genetic Operators are responsible for creating diversity in the new population.
+*<p>
 *Subclasses of GAL_GeneticOperator must provide methods for applyOperator.
 */
 public abstract class GAL_GeneticOperator{
 	
-	/**Random object wich can be used inside the others methods as distributeChromosomes.*/
+	/**Random object which can be used inside methods.*/
 	protected Random rand;
 	/**Probability of ocurrence for the genetic operator*/
 	protected double prob;
@@ -38,7 +40,7 @@ public abstract class GAL_GeneticOperator{
 		return prob;
 	}
 	
-	/**Applies the operator for a Population given as the first parameter under the restrictions given by the chromosome configuration.
+	/**Applies the operator for a Population under the restrictions given by the chromosome configuration.
 	*@param fathers Population thats going to be modified by the operator.
 	*@param config The configuration for the chromosomes of the current and next generation.
 	*@return A new population created after applying the operator.

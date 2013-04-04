@@ -3,12 +3,12 @@ package JGAL;
 /**The GAL_Chromosome represents any kind of Chromosome*/
 public class GAL_Chromosome implements Comparable<GAL_Chromosome>{
 	
-	/**The genes that represents the Chromosome*/
+	/**The genes that represents this Chromosome*/
 	protected GAL_Gene[] genes;
-	/**The fitness value for the Chromosome*/
+	/**The fitness value for this Chromosome*/
 	protected double fitness;
 	
-	/**Constructs a new GAL_Chromosome wich genes are passed as an argument.
+	/**Constructs a new GAL_Chromosome which genes are passed as an argument.
 	*@param genes Array of the genes of the Chromosome.
 	*@throws NotValidGeneException If the array of genes is empty or null.
 	*/
@@ -19,7 +19,7 @@ public class GAL_Chromosome implements Comparable<GAL_Chromosome>{
 			throw new NotValidChromosomeException("The chromosome must have at least one gene");
 	}
 	
-	/**Constructs a new GAL_Chromosome wich genes are passed as an argument.
+	/**Constructs a new GAL_Chromosome wich genes and fitness are passed as arguments.
 	*@param genes Array of the genes of the Chromosome.
 	*@param fitness The fitness value for the Chromosome.
 	*@throws NotValidGeneException If the array of genes is empty or null.
@@ -47,8 +47,8 @@ public class GAL_Chromosome implements Comparable<GAL_Chromosome>{
 	}
 	
 	/**Sets a gene to an position of the array of genes.
-	*@param gene The GAL_Gene wich is going to be assignated.
-	*@param pos The position wich is going to be modified.
+	*@param gene The GAL_Gene which is going to be assignated.
+	*@param pos The position which is going to be modified.
 	*/
 	public void setGene(GAL_Gene gene,int pos){
 		genes[pos]= gene;
@@ -67,7 +67,7 @@ public class GAL_Chromosome implements Comparable<GAL_Chromosome>{
 	}
 	
 	/**Gets the trait for the gene in the position denoted by the int parameter.
-	*@param pos The position of the gene wich trait is going to be returned.
+	*@param pos The position of the gene which trait is going to be returned.
 	*@return The trait for the gene in the position denoted by the int parameter.
 	*/
 	public Object getTrait(int pos){
@@ -107,9 +107,9 @@ public class GAL_Chromosome implements Comparable<GAL_Chromosome>{
 	
 	/**Compares two GAL_Chromosomes objects by their fitness
 	*@param other The GAL_Chromosome to be compared.
-	*@return the value 0 if this GAL_Chromosome is equal to the argument GAL_Chromosome;
-	*a value less than 0 if this GAL_Chromosome is numerically less than the argument GAL_Chromosome;
-	*and a value greater than 0 if this GAL_Chromosome is numerically greater than the argument GAL_Chromosome.
+	*@return the value 0 if this GAL_Chromosome fitness is equal to the argument GAL_Chromosome fitness;
+	*a value less than 0 if this GAL_Chromosome fitness is numerically less than the argument GAL_Chromosome fitness;
+	*and a value greater than 0 if this GAL_Chromosome fitness is numerically greater than the argument GAL_Chromosome fitness.
 	*/
 	public int compareTo(GAL_Chromosome other){
 		if(fitness > other.getFitness()) return 1;

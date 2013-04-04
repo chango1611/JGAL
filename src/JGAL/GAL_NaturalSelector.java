@@ -4,11 +4,13 @@ import java.util.Random;
 
 /**The GAL_NaturalSelector is an abstract class for the selection operator.
 *<p>
+*The selector is in charge of choosing which chromosomes will be used for the next generation.
+*<p>
 *Subclasses of GAL_NaturalSelector must provide methods for selectNewPopulation.
 */
 public abstract class GAL_NaturalSelector{
 
-	/**Random object wich can be used inside the others methods.*/
+	/**Random object wich can be used inside the other methods.*/
 	protected Random rand;
 	
 	/**Initialize a new GAL_NaturalSelector with a random object.*/

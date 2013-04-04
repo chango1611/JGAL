@@ -2,6 +2,9 @@ package JGAL;
 
 /**The GAL_Inversion extends from GAL_GeneticOperator and is one of the Genetic Operators implemented by default.
 *<p>
+*It consists of selecting two positions p1 and p2 randomly such that p1 &#60 p2 and
+*invert the genes found between p1 and p2.
+*<p>
 *Warning: This operator could give an exception if the genes for the chromosome have not the same configuration.
 */
 public class GAL_Inversion extends GAL_GeneticOperator{
@@ -15,10 +18,10 @@ public class GAL_Inversion extends GAL_GeneticOperator{
 		super(prob);
 	}
 	
-	/**Applies the inversion for a Population given as the first parameter under the restrictions given by the chromosome configuration.
+	/**Applies the inversion for a Population under the restrictions given by the chromosome configuration.
 	*@param fathers Population thats going to be modified by the operator.
 	*@param config The configuration for the chromosomes of the current and next generation.
-	*@return A new population created after applying the mutation.
+	*@return A new population created after applying the inversion.
 	*@throws NotValidOperationException If an operation can't be done with the given parameters.
 	*/
 	public GAL_Population applyOperator(GAL_Population fathers, GAL_ChromosomeConfig config)throws NotValidOperationException{

@@ -1,5 +1,6 @@
 package JGAL;
 
+/**An exception that is thrown when a Chromosome is not valid*/
 public class NotValidChromosomeException extends Exception{
 	protected static final long serialVersionUID = 1234;
 	public NotValidChromosomeException(){super();}

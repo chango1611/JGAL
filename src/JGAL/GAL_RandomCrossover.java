@@ -1,12 +1,17 @@
 package JGAL;
 
-/**The GAL_RandomCrossover extends from GAL_Crossover and is one of the Genetic Operators implemented by default.*/
+/**The GAL_RandomCrossover extends from GAL_Crossover and is one of the Genetic Operators implemented by default.
+*<p>
+*The random crossover consists in mixing randomly chromosomes values to be affected by the crossing.
+*After this, both chromosomes cross with any of the other techniques.
+*Finally, the values of the descendants are sorted.
+*/
 public class GAL_RandomCrossover extends GAL_Crossover{
 	
 	/**Intern operator.*/
 	protected GAL_GeneticOperator operator;
 	
-	/**Constructs a new GAL_RandomCrossover with another Genetic Operator inside it.
+	/**Constructs a new GAL_RandomCrossover with another Genetic Operator.
 	*@param prob This value is not used by the Random Crossover. 
 	*@param operator Intern operator.
 	*/
@@ -15,14 +20,16 @@ public class GAL_RandomCrossover extends GAL_Crossover{
 		this.operator= operator;
 	}
 	
-	/**Applies the segment crossover for a Population given as the first parameter under the restrictions given by the chromosome configuration.
+	/**Applies the random crossover for a Population given as the first parameter under the restrictions given by the chromosome configuration.
 	*@param fathers Population thats going to be modified by the operator.
 	*@param config The configuration for the chromosomes of the current and next generation.
-	*@return A new population created after applying the Segment crossover.
+	*@return A new population created after applying the random crossover.
 	*@throws NotValidOperationException If an operation can't be done with the given parameters.
 	*/
 	public GAL_Population applyOperator(GAL_Population fathers, GAL_ChromosomeConfig config)throws NotValidOperationException{
-		
+		if(config.size()==1)
+			return fathers;
+			
 		Integer[] aux= new Integer[config.size()];
 		for(int i=0;i<aux.length;i++)
 			aux[i]= Integer.valueOf(i);
