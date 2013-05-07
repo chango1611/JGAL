@@ -5,6 +5,8 @@ public class GAL_Configuration{
 
 	/**The configuration for the chromosomes that will be used by this GA.*/
 	protected GAL_ChromosomeConfig chromosomeConfig;
+	/**The initializer that will be useb by this GA*/
+	protected GAL_Initializer initializer;
 	/**The termination condition that will be used by this GA.*/
 	protected GAL_TerminationCondition condition;
 	/**The fitness function that will be used by this GA.*/
@@ -16,6 +18,21 @@ public class GAL_Configuration{
 
 	/**Constructs a new GAL_Configuration with the necessary information for running a GA.
 	*@param chromosomeConfig The configuration for the chromosomes that will be used by this GA.
+	*@param fitnessFunction The fitness function that will be used by this GA.
+	*@param selector The natural selector that will be useb by this GA.
+	*@param operators The genetic operators that will be used by this GA.
+	*/
+	public GAL_Configuration(GAL_ChromosomeConfig chromosomeConfig, GAL_FitnessFunction fitnessFunction, GAL_NaturalSelector selector, GAL_GeneticOperator[] operators){
+		this.chromosomeConfig= chromosomeConfig;
+		initializer= new GAL_DefaultInitializer();
+		condition= new GAL_DefaultTerminationCondition();
+		this.fitnessFunction= fitnessFunction;
+		this.selector= selector;
+		this.operators= operators;
+	}
+	
+	/**Constructs a new GAL_Configuration with the necessary information for running a GA.
+	*@param chromosomeConfig The configuration for the chromosomes that will be used by this GA.
 	*@param condition The termination condition that will be used by this GA.
 	*@param fitnessFunction The fitness function that will be used by this GA.
 	*@param selector The natural selector that will be useb by this GA.
@@ -23,6 +40,40 @@ public class GAL_Configuration{
 	*/
 	public GAL_Configuration(GAL_ChromosomeConfig chromosomeConfig, GAL_TerminationCondition condition, GAL_FitnessFunction fitnessFunction, GAL_NaturalSelector selector, GAL_GeneticOperator[] operators){
 		this.chromosomeConfig= chromosomeConfig;
+		initializer= new GAL_DefaultInitializer();
+		this.condition= condition;
+		this.fitnessFunction= fitnessFunction;
+		this.selector= selector;
+		this.operators= operators;
+	}
+	
+	/**Constructs a new GAL_Configuration with the necessary information for running a GA.
+	*@param chromosomeConfig The configuration for the chromosomes that will be used by this GA.
+	*@param initializer The initializer that will be used by this GA.
+	*@param fitnessFunction The fitness function that will be used by this GA.
+	*@param selector The natural selector that will be useb by this GA.
+	*@param operators The genetic operators that will be used by this GA.
+	*/
+	public GAL_Configuration(GAL_ChromosomeConfig chromosomeConfig, GAL_Initializer initializer, GAL_FitnessFunction fitnessFunction, GAL_NaturalSelector selector, GAL_GeneticOperator[] operators){
+		this.chromosomeConfig= chromosomeConfig;
+		this.initializer= initializer;
+		condition= new GAL_DefaultTerminationCondition();
+		this.fitnessFunction= fitnessFunction;
+		this.selector= selector;
+		this.operators= operators;
+	}
+	
+	/**Constructs a new GAL_Configuration with the necessary information for running a GA.
+	*@param chromosomeConfig The configuration for the chromosomes that will be used by this GA.
+	*@param initializer The initializer that will be used by this GA.
+	*@param condition The termination condition that will be used by this GA.
+	*@param fitnessFunction The fitness function that will be used by this GA.
+	*@param selector The natural selector that will be useb by this GA.
+	*@param operators The genetic operators that will be used by this GA.
+	*/
+	public GAL_Configuration(GAL_ChromosomeConfig chromosomeConfig, GAL_Initializer initializer, GAL_TerminationCondition condition, GAL_FitnessFunction fitnessFunction, GAL_NaturalSelector selector, GAL_GeneticOperator[] operators){
+		this.chromosomeConfig= chromosomeConfig;
+		this.initializer= initializer;
 		this.condition= condition;
 		this.fitnessFunction= fitnessFunction;
 		this.selector= selector;
@@ -53,7 +104,7 @@ public class GAL_Configuration{
 	*@throws NotValidPopulationException If the size is less than 1. 
 	*/
 	public GAL_Population createNewPopulation(int size)throws NotValidChromosomeException,NotValidPopulationException{
-		return new GAL_Population(size,chromosomeConfig);
+		return initializer.initialize(chromosomeConfig,size);
 	}
 	
 	/**Creates a new population under the configuration given by chromosomeConfig and an array of chromosomes.

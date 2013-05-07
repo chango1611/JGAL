@@ -2,7 +2,7 @@ package JGAL;
 
 /**The GAL_DefaultTerminationCondition is an termination condition that will always return false.
 */
-public class GAL_DefaultTerminationCondition{
+public class GAL_DefaultTerminationCondition extends GAL_TerminationCondition{
 	
 	/**Initializes a new GAL_DefaultTerminationCondition*/
 	public GAL_DefaultTerminationCondition(){}

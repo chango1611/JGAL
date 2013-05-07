@@ -53,7 +53,6 @@ public class GAL_MultiPointCrossover extends GAL_Crossover{
 	public GAL_Population applyOperator(GAL_Population fathers, GAL_ChromosomeConfig config)throws NotValidOperationException{
 		if(config.size()==1)
 			return fathers;
-			
 		GAL_Chromosome[][] chrom1= distributeChromosomes(fathers.getChromosomes(),prob), //Distribuye segun la prob[0] en fathers y sobrevivientes
 		chrom2;
 		correctSizeFromFirstGroup(chrom1,2); //Si el primer grupo no es agrupable, modifica los grupos
@@ -75,9 +74,10 @@ public class GAL_MultiPointCrossover extends GAL_Crossover{
 	*@param pos The positions where the crossover is going to be applied.
 	*@param config The chromosome configuration.
 	*@return The offsprings for the two fathers.
-	*@throws NotValidOperationException If an NotValidGeneException or ClassCastException gets catched; Or if the number of crossover points is bigger than the size.
+	*@throws NotValidOperationException If a NotValidGeneException or ClassCastException gets catched; Or if the number of crossover points is bigger than the size.
 	*/
 	protected GAL_Chromosome[] crossover(GAL_Chromosome[] fathers, int[] pos, GAL_ChromosomeConfig config)throws NotValidOperationException{
+		//System.out.println("Padres 1:\n"+fathers[0]+"\n"+fathers[1]);
 		GAL_Chromosome[] offsprings= {fathers[0].clone(),fathers[1].clone()};
 		if(nPoints > fathers[0].size())
 			throw new NotValidOperationException("The number of points must be less than the size of the chromosome for a Multi-Point Crossover");

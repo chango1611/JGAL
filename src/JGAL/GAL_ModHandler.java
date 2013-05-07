@@ -63,6 +63,8 @@ public class GAL_ModHandler extends GAL_Handler{
 	public GAL_ModHandler(GAL_Configuration configuration, int maxGenerations, int populationSize, int windowSize, int r)throws NotValidOperationException{
 		super(configuration, maxGenerations, populationSize, windowSize);
 		this.r= r;
+		if(r>populationSize)
+			throw new NotValidOperationException("r must be less or equal than populationSize");
 		int i, size= configuration.operatorsArraySize();
 		double sum= 0;
 		old_prob= new double[size];
