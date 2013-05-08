@@ -8,11 +8,10 @@ if you wish to use the application instead of the framework,
 it can be downloaded from this address:
 https://github.com/chango1611/JGAL_GUI
 
-bin
----
+JGAL.jar
+--------
 
-The bin folder contains all the .class files of the framework.
-It also contains the .jar file to be used as the framework
+The file to be used as the framework. It must be added to the classpath to be used
 
 class diagram
 -------------
